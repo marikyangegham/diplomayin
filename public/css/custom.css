@@ -1,0 +1,18 @@
+.custom-navbar{
+    border-radius: 0px;
+}
+.logo-background{
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 50px;
+    width: 50px ;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.custom-navbar-nav li{
+    padding-left: 15px;
+    padding-right: 15px;
+}
