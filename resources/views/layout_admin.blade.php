@@ -33,7 +33,6 @@
             <ul class="nav navbar-nav custom-navbar-nav">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Stocks</a></li>
-                <li><a href="#">Products</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ URL::route('account-sign-out') }}">Logout<span class="sr-only">(current)</span></a></li>
@@ -41,9 +40,24 @@
         </div>
     </div>
 </nav>
-<div class="root col-lg-12">
-    <div class="custom-left-sidebar col-lg-2">
-        @yield('content')
+<div class="left-sidebar col-lg-12">
+    <div class="custom-left-sidebar col-lg-12">
+        <div class="sidebar content-box col-lg-2" style="display: block;">
+            <ul class="nav">
+                <!-- Main menu -->
+                <li><a href="/goodsCount"><i class="glyphicon glyphicon-stats"></i> Goods count</a></li>
+                <li><a href="/goods"><i class="glyphicon glyphicon-list"></i> Goods</a></li>
+                <li><a href="/addNewGoods"><i class="glyphicon glyphicon-pencil"></i> Add new goods</a></li>
+                <li><a href="/addNewType"><i class="glyphicon glyphicon-pencil"></i> Add new type</a></li>
+                <li><a href="/inputOutput"><i class="glyphicon glyphicon-tasks"></i> Input Output</a></li>
+            </ul>
+        </div>
+        @yield('main-container')
+        @yield('goods-container')
+        @yield('add-new-goods-container')
+        @yield('add-type-container')
+        @yield('input-output-container')
+
     </div>
 </div>
 

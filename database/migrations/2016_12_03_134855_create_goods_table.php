@@ -15,8 +15,8 @@ class CreateGoodsTable extends Migration
     {
         Schema::create('catalog', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('goodsId');
-            $table->string('StockId');
+            $table->string('goods_id');
+            $table->string('stock_id');
             $table->text('properties');
             $table->integer('quantity');
             $table->timestamps();

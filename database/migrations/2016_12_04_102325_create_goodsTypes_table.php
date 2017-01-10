@@ -13,8 +13,9 @@ class CreateGoodsTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('goodsTypes', function (Blueprint $table) {
+        Schema::create('goods_types', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('category_id');
             $table->string('name');
             $table->timestamps();
         });
@@ -27,6 +28,6 @@ class CreateGoodsTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('goodsTypes');
+        Schema::dropIfExists('goods_types');
     }
 }

@@ -13,7 +13,12 @@
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/adminPage','AdminController@adminPage');
+    Route::get('/goodsCount','AdminController@adminPage');
+    Route::get('/goods','GoodsController@show');
+    Route::get('/addNewGoods','AddNewGoodsController@show');
+    Route::get('/addNewType', 'AddNewTypeController@show');
+    Route::post('/addNewType', 'AddNewTypeController@create');
+    Route::get('/inputOutput','InputOutputController@show');
     //Route::get('/logout' , 'Auth\LoginController@logout');
     Route::get('/account/sign-out', array(
         'as' => 'account-sign-out',
