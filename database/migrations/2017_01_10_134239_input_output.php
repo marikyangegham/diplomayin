@@ -13,7 +13,14 @@ class InputOutput extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('input_output', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('input_goods_id');
+            $table->integer('quantity_input');
+            $table->string('output_goods_id');
+            $table->integer('quantity_output');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class InputOutput extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('input_output');
     }
 }

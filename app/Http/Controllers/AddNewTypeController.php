@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\GoodsTypes;
+use App\Category;
 
 class AddNewTypeController extends Controller
 {
@@ -25,7 +25,10 @@ class AddNewTypeController extends Controller
     public function create(Request $request)
     {
         $input = $request->all();
-        print_r($input);
+        //$newType = new GoodsTypes();
+        //$newType->category_name = $input['typeName'];
+        Category::create($newType);
+        print_r($input['typeName']);
     }
 
     /**
