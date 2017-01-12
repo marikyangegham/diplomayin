@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\GoodsTypes;
+use Illuminate\Support\Facades\Validator;
 
 class AddNewGoodsController extends Controller
 {
@@ -21,9 +24,37 @@ class AddNewGoodsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $inputName = $request->input('name');
+        $inputName = strtolower($inputName);
+        $inputCategory = $request->input('selected_category');
+        $inputCategory = strtolower($inputCategory);
+
+
+        $v = Validator::make($request->all(), [
+            'name' => 'required',
+            'selected_category' => 'required',
+        ]);
+
+        if ($v->fails()) {
+            return redirect()->back()->withErrors($v->errors());
+        }else {
+            $category = Category::where('category_name', $inputCategory)->first();
+            $goodsType = GoodsTypes::where('name', $inputName)->where('category_id', $category['id'])->first();
+            //dd($goodsType);
+            if($goodsType){
+                return redirect()->back()->withErrors(["The record already exists"]);
+            }else{
+                GoodsTypes::create(array(
+                    'name' => $inputName,
+                    'category_id' => $category['id']
+                ));
+            }
+
+            return redirect('/goods');
+        }
+
     }
 
     /**
@@ -45,7 +76,8 @@ class AddNewGoodsController extends Controller
      */
     public function show()
     {
-        return view('addNewGoods');
+        $categories = Category::select()->get();
+        return view('addNewGoods', ['categories' => $categories]);
     }
 
     /**
@@ -54,9 +86,9 @@ class AddNewGoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

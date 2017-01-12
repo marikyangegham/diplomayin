@@ -69,6 +69,7 @@
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/bootstrap.js"></script>
-<script src="/js/goods-edit-delete.js"></script>
+<script src="/js/categories-edit-delete.js"></script>
+<script src="/js/goods-type-edith-delete.js"></script>
 </body>
 </html>

@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class GoodsTypes extends Model
 {
+    protected $table = 'goods_types';
+    protected $fillable = ['id', 'category_id', 'name', 'created_at', 'updated_at'];
 
-    protected $table = 'category';
+    public function category()
+    {
+        return $this->belongsTo('App\Category', 'category_id', 'id');
 
-
-//    protected $fillable = [
-//        'id', 'category_name'
-//    ];
-
+    }
 }

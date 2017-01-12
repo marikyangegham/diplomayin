@@ -30,7 +30,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">edit category</h4>
                     </div>
-                    <form method="post" action="/editCategory">
+                    <form method="post" action="/edit/category">
                         <div class="modal-body">
                                 <div ><p id="toChange"></p></div>
                                 <input id="editArea" type="text" name="new_category_name" required>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\GoodsTypes;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
@@ -101,7 +102,12 @@ class CategoryController extends Controller
     {
         $toRemove = $request->all();
         $category = Category::find($toRemove['id']);
+        $goodsTypes = GoodsTypes::where('category_id', $toRemove['id'])->get();
         $status = "fail";
+       // dd($goodsTypes);
+        foreach ($goodsTypes as $goodsType){
+            $goodsType->delete();
+        }
 
         if($category && $category->delete()){
             $status = "success";
