@@ -44,7 +44,7 @@ class LoginController extends Controller
         $password = $request->password;
 
         if (Auth::attempt(array('email' => $email , 'password' => $password))) {
-            return redirect('/adminPage');
+            return redirect('/goodsCount');
         }
         else{
             return redirect('/');

@@ -16,3 +16,10 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+.footer-custom-class{
+    position: fixed;
+    bottom: 10px;
+}
+.alert-custom-class{
+    margin-top: 25px;
+}

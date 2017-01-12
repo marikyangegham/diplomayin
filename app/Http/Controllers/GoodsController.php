@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class GoodsController extends Controller
 {
@@ -45,7 +46,8 @@ class GoodsController extends Controller
      */
     public function show()
     {
-        return view('Goods');
+        $categories = Category::select()->get();
+        return view('Goods', ['categories' => $categories]);
     }
 
     /**
@@ -54,9 +56,11 @@ class GoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $toChange = $request->all()['id'];
+        $newName = $request->all()['text'];
+        return $request->all();
     }
 
     /**
@@ -77,8 +81,20 @@ class GoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $toRemove = $request->all();
+        $category = Category::find($toRemove['id']);
+        $status = "fail";
+
+        if($category && $category->delete()){
+            $status = "success";
+        };
+
+        return response()->json([
+            'status' => $status
+        ]);
+
+
     }
 }

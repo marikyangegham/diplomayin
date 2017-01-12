@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Support\Facades\Validator;
 
 class AddNewTypeController extends Controller
 {
@@ -24,11 +25,25 @@ class AddNewTypeController extends Controller
      */
     public function create(Request $request)
     {
-        $input = $request->all();
-        //$newType = new GoodsTypes();
-        //$newType->category_name = $input['typeName'];
-        Category::create($newType);
-        print_r($input['typeName']);
+        $input = $request->input('category_name');
+        $input = strtolower($input);
+
+        $category = Category::where('category_name', $input)->first();
+        $v = Validator::make($request->all(), [
+            'category_name' => 'required|unique:category'
+
+        ]);
+        if ($v->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }else if(!$category){
+            Category::create(array(
+                'category_name' => $input
+            ));
+            return redirect('/goods');
+        }else{
+            return redirect()->back()->withErrors($v->errors());
+        }
     }
 
     /**

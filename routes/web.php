@@ -10,11 +10,11 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/goodsCount','AdminController@adminPage');
     Route::get('/goods','GoodsController@show');
+    Route::post('/removeCategory', 'GoodsController@destroy');
+    Route::post('/editCategory', 'GoodsController@edit');
     Route::get('/addNewGoods','AddNewGoodsController@show');
     Route::get('/addNewType', 'AddNewTypeController@show');
     Route::post('/addNewType', 'AddNewTypeController@create');

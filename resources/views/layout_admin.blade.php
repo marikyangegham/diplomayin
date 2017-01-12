@@ -60,8 +60,15 @@
 
     </div>
 </div>
+<div class="col-lg-offset-1 col-lg-11 footer-custom-class">
+    <footer>
+        <p>© 2017 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </footer>
+</div>
+
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/bootstrap.js"></script>
+<script src="/js/goods-edit-delete.js"></script>
 </body>
 </html>
