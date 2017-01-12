@@ -45,7 +45,7 @@ class AddNewGoodsController extends Controller
      */
     public function show()
     {
-        return view('AddNewGoods');
+        return view('addNewGoods');
     }
 
     /**

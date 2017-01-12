@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use Illuminate\Support\Facades\Validator;
 
-class AddNewTypeController extends Controller
+class AddNewCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -65,7 +65,7 @@ class AddNewTypeController extends Controller
      */
     public function show()
     {
-        return view('AddNewType');
+        return view('addNewCategory');
     }
 
     /**

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use Illuminate\Support\Facades\Validator;
 
-class InputOutputController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +25,7 @@ class InputOutputController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -45,7 +47,8 @@ class InputOutputController extends Controller
      */
     public function show()
     {
-        return view('inputOutput');
+        $categories = Category::select()->get();
+        return view('categories', ['categories' => $categories]);
     }
 
     /**
@@ -54,9 +57,26 @@ class InputOutputController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+
+        $toChangeCategoryId = $request->all()['id'];
+        $newName = $request->all()['category_name'];
+        $newName = strtolower($newName);
+        $category =  Category::where('id', $toChangeCategoryId)->first();
+        $category['category_name'] = $newName;
+        $status = "fail";
+        $v = Validator::make($request->all(), [
+            'category_name' => 'required|unique:category'
+
+        ]);
+        if($newName && !$v->fails() && $category->save()){
+            $status = "success";
+        }
+
+        return response()->json([
+        'status' => $status
+        ]);
     }
 
     /**
@@ -77,8 +97,20 @@ class InputOutputController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $toRemove = $request->all();
+        $category = Category::find($toRemove['id']);
+        $status = "fail";
+
+        if($category && $category->delete()){
+            $status = "success";
+        };
+
+        return response()->json([
+            'status' => $status
+        ]);
+
+
     }
 }

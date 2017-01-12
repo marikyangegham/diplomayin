@@ -11,14 +11,14 @@
 |
 */
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/goodsCount','AdminController@adminPage');
-    Route::get('/goods','GoodsController@show');
-    Route::post('/removeCategory', 'GoodsController@destroy');
-    Route::post('/editCategory', 'GoodsController@edit');
-    Route::get('/addNewGoods','AddNewGoodsController@show');
-    Route::get('/addNewType', 'AddNewTypeController@show');
-    Route::post('/addNewType', 'AddNewTypeController@create');
-    Route::get('/inputOutput','InputOutputController@show');
+    Route::get('/goods','GoodsController@index');
+    Route::get('/categories','CategoryController@show');
+    Route::get('/add/new/goods','AddNewGoodsController@show');
+    Route::get('/add/new/category', 'AddNewCategoryController@show');
+    Route::post('/remove/category', 'CategoryController@destroy');
+    Route::post('/edit/category', 'CategoryController@edit');
+    Route::post('/add/new/category', 'AddNewCategoryController@create');
+    Route::get('/input/output','InputOutputController@show');
     //Route::get('/logout' , 'Auth\LoginController@logout');
     Route::get('/account/sign-out', array(
         'as' => 'account-sign-out',

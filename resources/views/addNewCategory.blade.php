@@ -4,7 +4,7 @@
     <div class="col-lg-6">
 
         <div class="col-lg-12">
-            <form method="post" action="/addNewType">
+            <form method="post" action="/add/new/category">
 
                 <input type="text" name="category_name" required>
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />

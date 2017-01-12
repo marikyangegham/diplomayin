@@ -23,3 +23,6 @@
 .alert-custom-class{
     margin-top: 25px;
 }
+.error-input-border{
+    border-color: #a94442;
+}

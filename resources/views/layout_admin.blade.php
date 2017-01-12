@@ -31,7 +31,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav custom-navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="/goods">Home</a></li>
                 <li><a href="#">Stocks</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -45,11 +45,11 @@
         <div class="sidebar content-box col-lg-2" style="display: block;">
             <ul class="nav">
                 <!-- Main menu -->
-                <li><a href="/goodsCount"><i class="glyphicon glyphicon-stats"></i> Goods count</a></li>
-                <li><a href="/goods"><i class="glyphicon glyphicon-list"></i> Goods</a></li>
-                <li><a href="/addNewGoods"><i class="glyphicon glyphicon-pencil"></i> Add new goods</a></li>
-                <li><a href="/addNewType"><i class="glyphicon glyphicon-pencil"></i> Add new type</a></li>
-                <li><a href="/inputOutput"><i class="glyphicon glyphicon-tasks"></i> Input Output</a></li>
+                <li><a href="/goods"><i class="glyphicon glyphicon-stats"></i> Goods</a></li>
+                <li><a href="/categories"><i class="glyphicon glyphicon-list"></i> Categories</a></li>
+                <li><a href="/add/new/goods"><i class="glyphicon glyphicon-pencil"></i> Add new goods</a></li>
+                <li><a href="/add/new/category"><i class="glyphicon glyphicon-pencil"></i> Add new category</a></li>
+                <li><a href="/input/output"><i class="glyphicon glyphicon-tasks"></i> Input Output</a></li>
             </ul>
         </div>
         @yield('main-container')

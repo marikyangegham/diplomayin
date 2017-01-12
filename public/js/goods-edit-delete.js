@@ -7,7 +7,7 @@ window.onload = function () {
         $(_this).closest('tr').addClass('danger');
 
         $.ajax({
-            url: '/removeCategory',
+            url: '/remove/category',
             data : {id: id, "_token": $('meta[name="csrf-token"]').attr('content')},
             type: "POST",
             dataType: "json",
@@ -35,7 +35,8 @@ window.onload = function () {
         var category_name = $(_this).closest("tr")["0"].innerText;
         $('#toChange').text(category_name);
         $('#toEditArea').val(id);
-        $(_this).closest('tr').addClass('danger');
+        $('#editArea').removeClass('error-input-border');
+       // $(_this).closest('tr').addClass('danger');
 
 
     });
@@ -43,17 +44,17 @@ window.onload = function () {
     $('.saveChange').click(function(){
         let id = $('#toEditArea').val();
         let text = $('#editArea').val();
+
         $.ajax({
-            url: '/editCategory',
-            data : {id: id, newName: text, "_token": $('meta[name="csrf-token"]').attr('content')},
+            url: '/edit/category',
+            data : {"id": id, "category_name": text, "_token": $('meta[name="csrf-token"]').attr('content')},
             type: "POST",
             dataType: "json",
             success : function(response){
-                //console.log(response);
                 if(response.status == "success"){
-                    $(_this).closest('tr').text($('editArea').val());
+                    location.reload();
                 }else if(response.status == "fail"){
-
+                    $('#editArea').addClass('error-input-border');
                 }
             },
             error : function(res){
