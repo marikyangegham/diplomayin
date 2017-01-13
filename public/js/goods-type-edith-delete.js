@@ -36,24 +36,22 @@ $('#goods-types-table .glyphicon-pencil').click(function () {
 $('.saveGoodsChange').click(function(){
     let id = $('#toEditArea').val();
     let text = $('#editArea').val();
-    let category_name = $('#selectedCategory').val();
+    let category_id = $('#selectedCategory').val();
     $.ajax({
         url: '/edit/goods',
-        data : {"id": id, "category_name": category_name, "name": text, "_token": $('meta[name="csrf-token"]').attr('content')},
+        data : {"id": id, "category_id": category_id, "name": text, "_token": $('meta[name="csrf-token"]').attr('content')},
         type: "POST",
         dataType: "json",
         success : function(response){
-            console.log(response);
-            // if(response.status == "success"){
-            //     location.reload();
-            // }else if(response.status == "fail"){
-            //     $('#editArea').addClass('error-input-border');
-            // }
+            if(response.status == "success"){
+                location.reload();
+            }else if(response.status == "fail"){
+                $('#editArea').addClass('error-input-border');
+            }
         },
         error : function(res){
-            console.log(res);
-            // $(_this).closest('tr').removeClass('danger');
-            // alert("try again");
+            $(_this).closest('tr').removeClass('danger');
+            alert("try again");
         }
 
     });

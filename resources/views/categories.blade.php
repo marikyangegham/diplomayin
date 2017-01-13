@@ -2,6 +2,7 @@
 
 @section('goods-container')
     <div class="col-lg-6">
+        <h3>Categories List</h3>
         <table class="table">
             <thead>
                 <tr>

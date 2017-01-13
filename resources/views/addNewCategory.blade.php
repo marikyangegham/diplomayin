@@ -5,7 +5,7 @@
     <div class="col-lg-6">
 
         <div class="col-lg-12">
-            <h3>Add new category</h3>
+            <h3>Add New Category</h3>
             <form method="post" action="/add/new/category">
 
                 <input type="text" name="category_name" required>

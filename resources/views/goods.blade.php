@@ -3,6 +3,7 @@
 @section('main-container')
     <div>
         <div class="col-lg-6">
+            <h3>Goods List</h3>
             <table class="table">
                 <thead>
                 <tr>

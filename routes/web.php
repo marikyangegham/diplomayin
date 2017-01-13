@@ -19,9 +19,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/remove/category', 'CategoryController@destroy');
     Route::post('/edit/category', 'CategoryController@edit');
     Route::post('/add/new/category', 'AddNewCategoryController@create');
-    Route::get('/input/output','InputOutputController@show');
+    Route::get('/catalog','CatalogController@show');
     Route::post('/remove/goods/type', 'GoodsController@destroy');
     Route::post('/edit/goods', 'GoodsController@edit');
+    Route::get('/stocks', 'StocksController@show');
+    Route::post('/change/catalog/data', 'CatalogController@change');
     //Route::get('/logout' , 'Auth\LoginController@logout');
     Route::get('/account/sign-out', array(
         'as' => 'account-sign-out',

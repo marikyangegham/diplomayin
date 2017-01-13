@@ -1,7 +1,7 @@
 @extends('layout_admin')
 
 @section('add-new-goods-container')
-    <h3>Add new goods</h3>
+    <h3>Add New Goods</h3>
     <div>
        <form action="/add/new/goods" method="post">
            <input type="text" name="name" required />

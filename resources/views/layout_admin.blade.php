@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav custom-navbar-nav">
                 <li><a href="/goods">Home</a></li>
-                <li><a href="#">Stocks</a></li>
+                <li><a href="/stocks">Stocks</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ URL::route('account-sign-out') }}">Logout<span class="sr-only">(current)</span></a></li>
@@ -49,10 +49,11 @@
                 <li><a href="/categories"><i class="glyphicon glyphicon-list"></i> Categories</a></li>
                 <li><a href="/add/new/goods"><i class="glyphicon glyphicon-pencil"></i> Add new goods</a></li>
                 <li><a href="/add/new/category"><i class="glyphicon glyphicon-pencil"></i> Add new category</a></li>
-                <li><a href="/input/output"><i class="glyphicon glyphicon-tasks"></i> Input Output</a></li>
+                <li><a href="/catalog"><i class="glyphicon glyphicon-tasks"></i> Catalog</a></li>
             </ul>
         </div>
         @yield('main-container')
+        @yield('stocks-container')
         @yield('goods-container')
         @yield('add-new-goods-container')
         @yield('add-type-container')
@@ -71,5 +72,6 @@
 <script src="/js/bootstrap.js"></script>
 <script src="/js/categories-edit-delete.js"></script>
 <script src="/js/goods-type-edith-delete.js"></script>
+<script src="/js/catalog-changes.js"></script>
 </body>
 </html>
