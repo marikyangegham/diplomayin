@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\GoodsTypes;
 use App\User;
 use App\Catalog;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class CatalogController extends Controller
 {
@@ -36,8 +39,31 @@ class CatalogController extends Controller
     }
 
     public function change(Request $request){
+        $catalogItem =  Catalog::where('goods_id', $request['toChangeCatalogId'])->where('user_id', Auth::id())->first();
+        $status = "fail";
+        $v = Validator::make($request->all(), [
+            'opertator' => 'required',
+            'toChangeCatalogId' => 'required',
+            'goodsQuantity' => 'required'
 
-        dd($request->all());
+        ]);
+        if($catalogItem){
+            $catalogItem['quantity'] =  $request->goodsQuantity;
+        }else{
+            $catalogItem = new Catalog();
+            $catalogItem->goods_id = $request->toChangeCatalogId;
+            $catalogItem->user_id = Auth::id();
+            $catalogItem->quantity = $request->goodsQuantity;
+        }
+
+        if($catalogItem && !$v->fails() && $catalogItem->save()){
+            $status = "success";
+        }
+
+        return response()->json([
+            'status' => $status
+        ]);
+
         //        $catalog = new Catalog();
         //        $catalog->goods_id = "9";
         //        $catalog->user_id = "2";
