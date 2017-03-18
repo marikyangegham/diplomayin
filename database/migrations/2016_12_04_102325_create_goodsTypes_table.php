@@ -17,6 +17,7 @@ class CreateGoodsTypesTable extends Migration
             $table->increments('id');
             $table->string('category_id');
             $table->string('name');
+            $table->integer('price');
             $table->timestamps();
         });
     }

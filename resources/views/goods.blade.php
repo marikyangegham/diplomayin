@@ -9,8 +9,11 @@
                 <tr>
                     <th>name</th>
                     <th>category_name</th>
-                    <th>edith_category</th>
-                    <th>remove_category</th>
+                    <th>price</th>
+                    @if(\Auth::user()->isAdmin())
+                        <th>edith_category</th>
+                        <th>remove_category</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody id="goods-types-table">
@@ -19,8 +22,12 @@
                         <tr>
                             <td>{{$goodsType['name']}}</td>
                             <td>{{$goodsType->category->category_name}}</td>
-                            <td><span class="glyphicon glyphicon-pencil" data-value="edit" aria-hidden="true" data-id="{{$goodsType['id']}}" data-toggle="modal" data-target="#myModal"></span></td>
-                            <td><span class="glyphicon glyphicon-trash" data-value="delete" aria-hidden="true" data-id="{{$goodsType['id']}}"></span></td>
+                            <td>{{$goodsType['price']}}</td>
+
+                            @if(\Auth::user()->isAdmin())
+                                <td><span class="glyphicon glyphicon-pencil" data-value="edit" aria-hidden="true" data-id="{{$goodsType['id']}}" data-toggle="modal" data-target="#myModal"></span></td>
+                                <td><span class="glyphicon glyphicon-trash" data-value="delete" aria-hidden="true" data-id="{{$goodsType['id']}}"></span></td>
+                            @endif
                         </tr>
                     @endforeach
                 @endif
@@ -37,15 +44,26 @@
                         <form method="post" action="/edit/goods">
                             <div class="modal-body">
                                 <div ><p id="toChange"></p></div>
-                                <input id="editArea" type="text" name="new_goods_name" required>
-                                <select id="selectedCategory" name="selected_category">
-                                    <option></option>
-                                    @if(count($categories) > 0)
-                                        @foreach($categories as $category)
-                                            <option value="{{$category['id']}}" data-id="{{$category['id']}}">{{$category['category_name']}}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                                <div>
+                                    <span>set new name</span>
+                                    <input id="editArea" type="text" name="new_goods_name" required>
+                                </div>
+                                <div>
+                                    <span>set category</span>
+                                    <select id="selectedCategory" name="selected_category">
+                                        <option></option>
+                                        @if(count($categories) > 0)
+                                            @foreach($categories as $category)
+                                                <option value="{{$category['id']}}" data-id="{{$category['id']}}">{{$category['category_name']}}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                               <div>
+                                   <span>set price</span>
+                                   <input id="new_goods_price" type="text" name="new_goods_price" required>
+                               </div>
+
                                 <input id="toEditArea" type="hidden" name="toChangeGoodsId" />
                                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 

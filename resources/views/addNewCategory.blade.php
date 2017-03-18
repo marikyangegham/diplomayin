@@ -1,13 +1,13 @@
 @extends('layout_admin')
 
 @section('add-type-container')
-
+    @if(\Auth::user()->isAdmin())
     <div class="col-lg-6">
 
         <div class="col-lg-12">
             <h3>Add New Category</h3>
             <form method="post" action="/add/new/category">
-
+                <span>enter category name</span>
                 <input type="text" name="category_name" required>
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                 <input type="submit" value="ADD Category">
@@ -24,4 +24,8 @@
         @endif
 
     </div>
+    @endif
+    @if(!\Auth::user()->isAdmin())
+        <div><p>Required admin permission</p></div>
+    @endif
 @endsection

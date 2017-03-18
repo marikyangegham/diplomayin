@@ -7,8 +7,10 @@
             <thead>
                 <tr>
                     <th>category_name</th>
-                    <th>edith_category</th>
-                    <th>remove_category</th>
+                    @if(\Auth::user()->isAdmin())
+                        <th>edith_category</th>
+                        <th>remove_category</th>
+                    @endif
                 </tr>
             </thead>
             <tbody id="category-table">
@@ -16,8 +18,10 @@
                 @foreach($categories as $category)
                     <tr>
                         <td>{{$category['category_name']}}</td>
-                        <td><span class="glyphicon glyphicon-pencil" data-value="edit" aria-hidden="true" data-id="{{$category['id']}}" data-toggle="modal" data-target="#myModal"></span></td>
-                        <td><span class="glyphicon glyphicon-trash" data-value="delete" aria-hidden="true" data-id="{{$category['id']}}"></span></td>
+                        @if(\Auth::user()->isAdmin())
+                            <td><span class="glyphicon glyphicon-pencil" data-value="edit" aria-hidden="true" data-id="{{$category['id']}}" data-toggle="modal" data-target="#myModal"></span></td>
+                            <td><span class="glyphicon glyphicon-trash" data-value="delete" aria-hidden="true" data-id="{{$category['id']}}"></span></td>
+                        @endif
                     </tr>
                 @endforeach
             @endif

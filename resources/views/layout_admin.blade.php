@@ -35,7 +35,8 @@
                 <li><a href="/stocks">Stocks</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ URL::route('account-sign-out') }}">Logout<span class="sr-only">(current)</span></a></li>
+                <li><a href="/stocks">{{\Auth::user()->name}}</a></li>
+                <li><a href="{{ URL::route('account-sign-out') }}">Logout</a></li>
             </ul>
         </div>
     </div>

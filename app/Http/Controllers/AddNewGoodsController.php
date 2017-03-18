@@ -27,6 +27,7 @@ class AddNewGoodsController extends Controller
     public function create(Request $request)
     {
         $inputName = $request->input('name');
+        $price = $request->input('price');
         $inputName = strtolower($inputName);
         $inputCategory = $request->input('selected_category');
         $inputCategory = strtolower($inputCategory);
@@ -34,7 +35,8 @@ class AddNewGoodsController extends Controller
 
         $v = Validator::make($request->all(), [
             'name' => 'required',
-            'selected_category' => 'required',
+            'price' => 'required',
+            'selected_category' => 'required'
         ]);
 
         if ($v->fails()) {
@@ -48,6 +50,7 @@ class AddNewGoodsController extends Controller
             }else{
                 GoodsTypes::create(array(
                     'name' => $inputName,
+                    'price' => $price,
                     'category_id' => $category['id']
                 ));
             }

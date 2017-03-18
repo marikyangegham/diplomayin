@@ -26,6 +26,14 @@
                 @endforeach
             @endif
             </tbody>
+            <tfoot>
+            <tr>
+                <td>total</td>
+                @foreach($total as $itemTotal)
+                    <th>{{$itemTotal}}</th>
+                @endforeach
+            </tr>
+            </tfoot>
         </table>
         <button id="change-quantity" data-toggle="modal" data-target="#myModal">Change Quantity</button>
         <!-- Modal -->
@@ -44,15 +52,22 @@
                                     <input type="radio" name="quantityPlusOrMinus" value="minus"> minus
                                 </div>
                                 <div class="col-lg-9">
-                                    <select id="selected_goods" name="selected_goods">
-                                        <option></option>
-                                        @if(count($goods) > 0)
-                                            @foreach($goods as $item)
-                                                <option value="{{$item['id']}}">{{$item['name']}}({{$item->category->category_name}})</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                    <input id="number" type="number" name="number" required>
+                                    <div>
+                                        <span>select good</span>
+                                        <select id="selected_goods" name="selected_goods">
+                                            <option></option>
+                                            @if(count($goods) > 0)
+                                                @foreach($goods as $item)
+                                                    <option value="{{$item['id']}}">{{$item['name']}}({{$item->category->category_name}})</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <span>set cuantity</span>
+                                        <input id="number" type="number" name="number" required>
+                                    </div>
                                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
                                 </div>
@@ -62,13 +77,14 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary saveQuantityChange">Save changes</button>
+                            <button type="button" class="btn btn-primary saveQuantityChange" >Save changes</button>
                         </div>
                     </form>
 
                 </div>
             </div>
         </div>
+
         @if (count($errors) > 0)
             <div class="alert alert-danger col-lg-12 alert-custom-class">
                 <ul>

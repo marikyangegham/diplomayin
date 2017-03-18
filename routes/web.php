@@ -12,13 +12,9 @@
 */
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/goods','GoodsController@index');
+    Route::get('/add/new/category', 'AddNewCategoryController@show');
     Route::get('/categories','CategoryController@show');
     Route::get('/add/new/goods','AddNewGoodsController@show');
-    Route::post('/add/new/goods','AddNewGoodsController@create');
-    Route::get('/add/new/category', 'AddNewCategoryController@show');
-    Route::post('/remove/category', 'CategoryController@destroy');
-    Route::post('/edit/category', 'CategoryController@edit');
-    Route::post('/add/new/category', 'AddNewCategoryController@create');
     Route::get('/catalog','CatalogController@show');
     Route::post('/remove/goods/type', 'GoodsController@destroy');
     Route::post('/edit/goods', 'GoodsController@edit');
@@ -29,6 +25,14 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'account-sign-out',
         'uses' => 'Auth\LoginController@logout'
     ));
+});
+
+Route::group(['middleware' => 'admin'], function () {
+
+    Route::post('/add/new/goods','AddNewGoodsController@create');
+    Route::post('/remove/category', 'CategoryController@destroy');
+    Route::post('/edit/category', 'CategoryController@edit');
+    Route::post('/add/new/category', 'AddNewCategoryController@create');
 });
 
 

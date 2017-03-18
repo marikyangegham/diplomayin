@@ -40,11 +40,20 @@ class LoginController extends Controller
 
     public function doLogin(Request $request){
 
+//        $user = new User();
+//        $user->email = "marikyangegham@gmail.com";
+//        $user->name = "Gegham";
+//        $user->role = 0;
+//        $user->password = Hash::make("123456");
+//        User::create($user['attributes']);
+
+
+
         $email = $request->email;
         $password = $request->password;
 
         if (Auth::attempt(array('email' => $email , 'password' => $password))) {
-            return redirect('/goodsCount');
+            return redirect('/goods');
         }
         else{
             return redirect('/');

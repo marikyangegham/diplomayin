@@ -17,13 +17,19 @@ class CatalogController extends Controller
         $users = User::with('catalogs')->get();
         $goodsTypes = GoodsTypes::with('category')->get();
 
+        $total = [];
         foreach ($users as $user) {
             $c = [];
+
             foreach ($goodsTypes as $goodsType) {
                 $c[$goodsType->id] = 0;
+                if(empty($total[$goodsType->id]))
+                    $total[$goodsType->id] = 0;
+
                 foreach ($user->catalogs as $catalog) {
                     if ($goodsType->id == $catalog->goods_id) {
                         $c[$catalog->goods_id] = $catalog->quantity;
+                        $total[$goodsType->id] += $catalog->quantity;
                     }
                 }
             }
@@ -31,24 +37,41 @@ class CatalogController extends Controller
             $user->c = $c;
         }
         $goods = GoodsTypes::select('id', 'name' , 'category_id')->with('category')->get();
-//        foreach ($goods as $item){
-//            print_r($item['id']);
-//        }
 
-        return view('catalog', ['goodsTypes' => $goodsTypes, 'users' => $users, 'goods' => $goods]);
+
+        return view('catalog', ['goodsTypes' => $goodsTypes, 'users' => $users, 'goods' => $goods, 'total' => $total]);
     }
 
     public function change(Request $request){
         $catalogItem =  Catalog::where('goods_id', $request['toChangeCatalogId'])->where('user_id', Auth::id())->first();
         $status = "fail";
         $v = Validator::make($request->all(), [
-            'opertator' => 'required',
+            'operator' => 'required',
             'toChangeCatalogId' => 'required',
             'goodsQuantity' => 'required'
 
         ]);
+
+        $v->after(function ($v) use ($catalogItem, $request) {
+            if ($request ->quantityPlusOrMinus == 'minus' && $catalogItem['quantity'] < $request->goodsQuantity) {
+                $v->errors()->add('quantity', 'You dont have enough goods.');
+            }
+        });
+
+        if($v->fails()){
+            return response()->json([
+                'status' => false,
+                'errors' => $v->errors()->all()
+            ]);
+        }
+
+
         if($catalogItem){
-            $catalogItem['quantity'] =  $request->goodsQuantity;
+            if($request->operator == 'plus'){
+                $catalogItem->quantity +=  $request->goodsQuantity;
+            }elseif($request->operator == 'minus'){
+                $catalogItem->quantity -=  $request->goodsQuantity;
+            }
         }else{
             $catalogItem = new Catalog();
             $catalogItem->goods_id = $request->toChangeCatalogId;
@@ -56,12 +79,13 @@ class CatalogController extends Controller
             $catalogItem->quantity = $request->goodsQuantity;
         }
 
-        if($catalogItem && !$v->fails() && $catalogItem->save()){
+        if($catalogItem && $catalogItem->save()){
             $status = "success";
         }
 
         return response()->json([
-            'status' => $status
+            'status' => $status,
+            'catalogItem' => $catalogItem
         ]);
 
         //        $catalog = new Catalog();

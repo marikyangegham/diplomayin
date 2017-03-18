@@ -19,6 +19,7 @@ class GoodsController extends Controller
 
     public function index(){
 
+        //print_r(\Auth::user()->isAdmin());
 
         /*$stock = new Stocks();
         $stock->stock_name = "amiryan";
@@ -34,7 +35,7 @@ class GoodsController extends Controller
         User::create($user['attributes']);*/
 
         //return redirect('/admin/users');
-        $goodsTypes = GoodsTypes::select('id', 'name' , 'category_id')->with('category')->get();
+        $goodsTypes = GoodsTypes::select('id', 'name', 'price' , 'category_id')->with('category')->get();
         $categories = Category::select()->get();
         $name = $user = Auth::user()->name;
         return view('goods', ['name' => $name , 'goodsTypes' => $goodsTypes, 'categories' => $categories]);
@@ -43,11 +44,13 @@ class GoodsController extends Controller
     {
         $toChangeGoodsId = $request->all()['id'];
         $newCategoryId = $request->all()['category_id'];
+        $newPrice = $request->all()['price'];
         $newName = $request->all()['name'];
         $newName = strtolower($newName);
         $goodsType =  GoodsTypes::where('id', $toChangeGoodsId)->first();
         $goodsType['name'] = $newName;
         $goodsType['category_id'] = $newCategoryId;
+        $goodsType['price'] = $newPrice;
         $status = "fail";
         $v = Validator::make($request->all(), [
             'name' => 'required',

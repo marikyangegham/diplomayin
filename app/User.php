@@ -28,6 +28,11 @@ class User extends Authenticatable
     ];
 
 
+    public function isAdmin(){
+        return $this->role == 1;
+    }
+
+
     public function catalogs()
     {
         return $this->hasMany('App\Catalog', 'user_id', 'id');

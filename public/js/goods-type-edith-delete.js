@@ -36,10 +36,11 @@ $('#goods-types-table .glyphicon-pencil').click(function () {
 $('.saveGoodsChange').click(function(){
     let id = $('#toEditArea').val();
     let text = $('#editArea').val();
+    let price = $('#new_goods_price').val();
     let category_id = $('#selectedCategory').val();
     $.ajax({
         url: '/edit/goods',
-        data : {"id": id, "category_id": category_id, "name": text, "_token": $('meta[name="csrf-token"]').attr('content')},
+        data : {"id": id, "category_id": category_id, "name": text, "price": price, "_token": $('meta[name="csrf-token"]').attr('content')},
         type: "POST",
         dataType: "json",
         success : function(response){
