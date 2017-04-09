@@ -16,6 +16,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/categories','CategoryController@show');
     Route::get('/add/new/goods','AddNewGoodsController@show');
     Route::get('/catalog','CatalogController@show');
+    Route::get('/inputted','InputController@show');
+    Route::get('/outputted','OutputController@show');
+    Route::get('/add/new/deliveryman', 'DeliverymanController@show');
+    Route::get('/deliveryman', 'DeliverymanController@showList');
     Route::post('/remove/goods/type', 'GoodsController@destroy');
     Route::post('/edit/goods', 'GoodsController@edit');
     Route::get('/stocks', 'StocksController@show');
@@ -28,11 +32,12 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'admin'], function () {
-
+    Route::post('/add/new/deliveryman', 'DeliverymanController@show');
     Route::post('/add/new/goods','AddNewGoodsController@create');
     Route::post('/remove/category', 'CategoryController@destroy');
     Route::post('/edit/category', 'CategoryController@edit');
     Route::post('/add/new/category', 'AddNewCategoryController@create');
+    Route::post('/add/new/deliveryman', 'DeliverymanController@create');
 });
 
 

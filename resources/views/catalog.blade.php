@@ -35,7 +35,7 @@
             </tr>
             </tfoot>
         </table>
-        <button id="change-quantity" data-toggle="modal" data-target="#myModal">Change Quantity</button>
+        {{--<button id="change-quantity" data-toggle="modal" data-target="#myModal">Change Quantity</button>--}}
         <!-- Modal -->
         <div class="modal fade custom-modal-class" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">

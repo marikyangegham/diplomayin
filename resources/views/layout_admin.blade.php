@@ -50,7 +50,11 @@
                 <li><a href="/categories"><i class="glyphicon glyphicon-list"></i> Categories</a></li>
                 <li><a href="/add/new/goods"><i class="glyphicon glyphicon-pencil"></i> Add new goods</a></li>
                 <li><a href="/add/new/category"><i class="glyphicon glyphicon-pencil"></i> Add new category</a></li>
+                <li><a href="/add/new/deliveryman"><i class="glyphicon glyphicon-pencil"></i> Add new deliveryman</a></li>
                 <li><a href="/catalog"><i class="glyphicon glyphicon-tasks"></i> Catalog</a></li>
+                <li><a href="/deliveryman"><i class="glyphicon glyphicon-tasks"></i> Deliveryman</a></li>
+                <li><a href="/inputted"><i class="glyphicon glyphicon-tasks"></i> All inputted goods</a></li>
+                <li><a href="/outputted"><i class="glyphicon glyphicon-tasks"></i> All outputted goods</a></li>
             </ul>
         </div>
         @yield('main-container')
