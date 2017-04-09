@@ -3,11 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Output;
+use App\GoodsTypes;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Catalog;
 
 class OutputController extends Controller
 {
     public function show()
     {
+        $outputtedGoods = Output::with('user')
+            ->with('good')
+            ->select()
+            ->get();
+        $goods = GoodsTypes::get()->all();
 
+        return view('allOutputtedGoods', ['outputtedGoods' => $outputtedGoods, 'goods' => $goods]);
+    }
+    public function output(Request $request){
+        $goodsId = $request->all()['goods_id'];
+        $quantity = $request->all()['quantity'];
+        $user_id = Auth::id();
+
+        $status = "fail";
+        $v = Validator::make($request->all(), [
+            'goods_id' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        if($v->fails()){
+            return response()->json([
+                'status' => $status
+            ]);
+        }
+
+        $catalogItem =  Catalog::where('goods_id', $goodsId)->where('user_id', Auth::id())->first();
+
+        if($catalogItem && $catalogItem -> quantity >= $quantity){
+            $catalogItem->quantity -= $quantity;
+            $catalogItem->save();
+        }else{
+            return response()->json([
+                'status' => $status
+            ]);
+        }
+        Output::create(array(
+            'goods_id' => $goodsId,
+            'user_id' => $user_id,
+            'quantity' => $quantity
+        ));
+
+        $status = 'success';
+        return response()->json([
+            'status' => $status
+        ]);
     }
 }

@@ -58,8 +58,12 @@
             </ul>
         </div>
         @yield('main-container')
+        @yield('all-inputted-container')
+        @yield('all-outputted-container')
+        @yield('add-new-deliveryman-container')
         @yield('stocks-container')
         @yield('goods-container')
+        @yield('deliveryman-container')
         @yield('add-new-goods-container')
         @yield('add-type-container')
         @yield('input-output-container')
@@ -78,5 +82,8 @@
 <script src="/js/categories-edit-delete.js"></script>
 <script src="/js/goods-type-edith-delete.js"></script>
 <script src="/js/catalog-changes.js"></script>
+<script src="/js/deliverymanEditDelete.js"></script>
+<script src="/js/input.js"></script>
+<script src="/js/output.js"></script>
 </body>
 </html>

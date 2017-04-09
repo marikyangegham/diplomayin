@@ -21,8 +21,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/add/new/deliveryman', 'DeliverymanController@show');
     Route::get('/deliveryman', 'DeliverymanController@showList');
     Route::post('/remove/goods/type', 'GoodsController@destroy');
+    Route::post('/remove/deliveryman', 'DeliverymanController@destroy');
+    Route::post('/edit/deliveryman', 'DeliverymanController@edit');
     Route::post('/edit/goods', 'GoodsController@edit');
     Route::get('/stocks', 'StocksController@show');
+    Route::post('/input/goods', 'InputController@input');
+    Route::post('/output/goods', 'OutputController@output');
     Route::post('/change/catalog/data', 'CatalogController@change');
     //Route::get('/logout' , 'Auth\LoginController@logout');
     Route::get('/account/sign-out', array(
@@ -32,7 +36,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::post('/add/new/deliveryman', 'DeliverymanController@show');
+    Route::post('/add/new/deliveryman', 'DeliverymanController@create');
+    Route::post('/edit/deliveryman', 'DeliverymanController@edit');
     Route::post('/add/new/goods','AddNewGoodsController@create');
     Route::post('/remove/category', 'CategoryController@destroy');
     Route::post('/edit/category', 'CategoryController@edit');

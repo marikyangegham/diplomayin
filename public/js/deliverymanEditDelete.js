@@ -1,10 +1,10 @@
-$('#goods-types-table .glyphicon-trash').click(function () {
+$('#deliveryman-table .glyphicon-trash').click(function () {
     var _this = $(this);
     var id = $(this).attr('data-id');
     $(_this).closest('tr').addClass('danger');
 
     $.ajax({
-        url: '/remove/goods/type',
+        url: '/remove/deliveryman',
         data : {id: id, "_token": $('meta[name="csrf-token"]').attr('content')},
         type: "POST",
         dataType: "json",
@@ -22,25 +22,22 @@ $('#goods-types-table .glyphicon-trash').click(function () {
 
     });
 });
-
-$('#goods-types-table .glyphicon-pencil').click(function () {
+$('#deliveryman-table .glyphicon-pencil').click(function () {
     $('#editArea').val('');
     var _this = $(this);
     var id = $(this).attr('data-id');
     $('#toEditArea').val(id);
-    var goods_name = $(_this).closest("tr")["0"].innerText;
-    $('#toChange').text(goods_name);
+    var deliveryman_name = $(_this).closest("tr")["0"].innerText;
+    $('#toChange').text(deliveryman_name);
     $('#editArea').removeClass('error-input-border');
 });
 
-$('#goods-types-table .saveGoodsChange').click(function(){
-    let id = $('#toEditArea').val();
+$('.deliveryman-modal .saveDeliverymanChange').click(function(){
+    let deliveryman_id = $('#toEditArea').val();
     let text = $('#editArea').val();
-    let price = $('#new_goods_price').val();
-    let category_id = $('#selectedCategory').val();
     $.ajax({
-        url: '/edit/goods',
-        data : {"id": id, "category_id": category_id, "name": text, "price": price, "_token": $('meta[name="csrf-token"]').attr('content')},
+        url: '/edit/deliveryman',
+        data : {"deliveryman_id": deliveryman_id, "name": text,  "_token": $('meta[name="csrf-token"]').attr('content')},
         type: "POST",
         dataType: "json",
         success : function(response){

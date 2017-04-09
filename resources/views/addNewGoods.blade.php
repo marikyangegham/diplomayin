@@ -5,11 +5,11 @@
     <h3>Add New Goods</h3>
     <div>
        <form action="/add/new/goods" method="post">
-           <div>
+           <div class="marginFor">
                <span>enter name</span>
                <input type="text" name="name" required />
            </div>
-           <div>
+           <div class="marginFor">
                <span>set type</span>
                <select name="selected_category">
                    <option></option>
@@ -20,7 +20,7 @@
                    @endif
                </select>
            </div>
-           <div>
+           <div class="marginFor">
                <span>set price</span>
                <input type="text" name="price" required />
            </div>

@@ -37,4 +37,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Catalog', 'user_id', 'id');
     }
+
+
+    public function stock()
+    {
+        return $this->hasMany('App\Catalog', 'user_id', 'id');
+    }
 }
