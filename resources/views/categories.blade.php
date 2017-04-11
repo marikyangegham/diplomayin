@@ -1,15 +1,15 @@
 @extends('layout_admin')
 
 @section('goods-container')
-    <div class="col-lg-6">
-        <h3>Categories List</h3>
+    <div>
+        <h3>Կատեգորիաների ցուցակ</h3>
         <table class="table">
             <thead>
                 <tr>
-                    <th>category_name</th>
+                    <th>Կատեգորիայի անուն</th>
                     @if(\Auth::user()->isAdmin())
-                        <th>edith_category</th>
-                        <th>remove_category</th>
+                        <th>Փոփոխել կատեգորիան</th>
+                        <th>Ջնջել կատեգորիան</th>
                     @endif
                 </tr>
             </thead>
@@ -33,19 +33,22 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">edit category</h4>
+                        <h4 class="modal-title" id="myModalLabel">Փոփոխել կատեգորիան</h4>
                     </div>
                     <form method="post" action="/edit/category">
                         <div class="modal-body">
-                                <div ><p id="toChange"></p></div>
-                                <input id="editArea" type="text" name="new_category_name" required>
+                            <div class="form-group">
+                                <div><p id="toChange"></p></div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="editArea" type="text" name="new_category_name" required>
                                 <input id="toEditArea" type="hidden" name="toChangeCatecoryId" />
                                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary saveChange">Save changes</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
+                            <button type="button" class="btn btn-primary saveChange">Պահպանել փոփոխությունը</button>
                         </div>
                     </form>
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGoodsTypesTable extends Migration
+class CreateDeliverymanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateGoodsTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('goods_types', function (Blueprint $table) {
+        Schema::create('deliveryman', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('category_id');
-            $table->string('name');
-            $table->string('measurement');
-            $table->integer('price');
+            $table->string('deliveryman_name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateGoodsTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('goods_types');
+        Schema::drop('deliveryman');
     }
 }

@@ -28,10 +28,9 @@ class AddNewGoodsController extends Controller
     {
         $inputName = $request->input('name');
         $price = $request->input('price');
+        $measurement = $request->input('measurement');
         $inputName = strtolower($inputName);
         $inputCategory = $request->input('selected_category');
-        $inputCategory = strtolower($inputCategory);
-
 
         $v = Validator::make($request->all(), [
             'name' => 'required',
@@ -42,16 +41,15 @@ class AddNewGoodsController extends Controller
         if ($v->fails()) {
             return redirect()->back()->withErrors($v->errors());
         }else {
-            $category = Category::where('category_name', $inputCategory)->first();
-            $goodsType = GoodsTypes::where('name', $inputName)->where('category_id', $category['id'])->first();
-            //dd($goodsType);
+            $goodsType = GoodsTypes::where('name', $inputName)->where('category_id', $inputCategory)->first();
             if($goodsType){
                 return redirect()->back()->withErrors(["The record already exists"]);
             }else{
                 GoodsTypes::create(array(
                     'name' => $inputName,
                     'price' => $price,
-                    'category_id' => $category['id']
+                    'measurement' => $measurement,
+                    'category_id' => $inputCategory
                 ));
             }
 

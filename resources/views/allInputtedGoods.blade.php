@@ -1,16 +1,16 @@
 @extends('layout_admin')
 
 @section('all-inputted-container')
-    <div class="col-lg-6">
-        <h3>Inputted Goods List</h3>
+    <div>
+        <h3>Ներմուծված ապրանքները</h3>
         <table class="table">
             <thead>
             <tr>
-                <th>goods_name</th>
-                <th>user_name</th>
-                <th>quantity</th>
-                <th>deliveryman</th>
-                <th>date</th>
+                <th>Ապրանքի անվանումը</th>
+                <th>Ընդունողի անունը</th>
+                <th>Քանակը</th>
+                <th>Առաքիչը</th>
+                <th>Ժամանակը</th>
             </tr>
             </thead>
             <tbody id="category-table">
@@ -19,7 +19,7 @@
                     <tr>
                         <td>{{$inputtedGood->good->name}}</td>
                         <td>{{$inputtedGood->user->name}}</td>
-                        <td>{{$inputtedGood->quantity}}</td>
+                        <td>{{$inputtedGood->quantity}}({{$inputtedGood->good->measurement}})</td>
                         <td>{{$inputtedGood->deliveryman->deliveryman_name}}</td>
                         <td>{{$inputtedGood->created_at}}</td>
                     </tr>
@@ -27,45 +27,48 @@
             @endif
             </tbody>
         </table>
-        <button id="inputButton" data-toggle="modal" data-target="#myModal">input</button>
+        <button class="btn btn-info" id="inputButton" data-toggle="modal" data-target="#myModal">Ներմուծել</button>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Input goods</h4>
+                        <h4 class="modal-title" id="myModalLabel">Ներմուծել ապրանք</h4>
                     </div>
                     <form method="post" action="/input/goods">
                         <div class="modal-body">
-                            <div class="col-lg-4">
-                                <h4>Select good type</h4>
-                                <select id="inputGoodType">
-                                    <option></option>
-                                    @foreach ($goods as $good)
-                                        <option value="{{$good['id']}}">{{$good['name']}}</option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                            <div class="margintop">
+                                <div class="col-lg-4 form-group">
+                                    <label>Նշել ապրանքատեսակը</label>
+                                    <select id="inputGoodType" class="form-control">
+                                        <option></option>
+                                        @foreach ($goods as $good)
+                                            <option value="{{$good['id']}}">{{$good['name']}}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>Նշել քանակը({{ $good['measurement'] }})</label>
+                                    <input class="form-control" id="goodQuantity" type="number" name="goodQuantity">
+                                </div>
+                                <div class="col-lg-4 form-group">
+                                    <label>Ընտրել առաքիչին</label>
+                                    <select class="form-control" id="goodDeliveryman">
+                                        <option></option>
+                                        @foreach ($deliverymans as $deliveryman)
+                                            <option value="{{$deliveryman['id']}}">{{$deliveryman['deliveryman_name']}}</option>
+                                        @endforeach
+                                    </select>
+                                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                                <h4>Set quantity</h4>
-                                <input id="goodQuantity" type="number" name="goodQuantity">
                             </div>
-                            <div class="col-lg-4">
-                                <h4>Select deliveryman</h4>
-                                <select id="goodDeliveryman">
-                                    <option></option>
-                                    @foreach ($deliverymans as $deliveryman)
-                                        <option value="{{$deliveryman['id']}}">{{$deliveryman['deliveryman_name']}}</option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                            </div>
-                        </div>
+
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary input">Input</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
+                            <button type="button" class="btn btn-primary input">Ներմուծել</button>
                         </div>
                     </form>
 

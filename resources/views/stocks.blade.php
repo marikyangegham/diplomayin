@@ -2,8 +2,8 @@
 
 @section('stocks-container')
     <div>
-        <div class="col-lg-6">
-            <h3>Stocks List</h3>
+        <div>
+            <h3>Օգտվողների ցուցակ</h3>
                 <ul>
                     @if(count($stocks) > 0)
                         @foreach($stocks as $stock)

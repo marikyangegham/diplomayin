@@ -2,15 +2,15 @@
 
 @section('deliveryman-container')
     <div>
-        <div class="col-lg-6">
-            <h3>Deliveryman List</h3>
+        <div>
+            <h3>Առաքիչների ցուցակ</h3>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>deliveryman_name</th>
+                    <th>Առաքիչ</th>
                     @if(\Auth::user()->isAdmin())
-                        <th>edit_deliveryman</th>
-                        <th>remove_deliveryman</th>
+                        <th>Փոփոխել</th>
+                        <th>Ջնջել</th>
                     @endif
                 </tr>
                 </thead>
@@ -34,24 +34,30 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">edit  deliveryman </h4>
+                            <h4 class="modal-title" id="myModalLabel">Փոփոխել առաքիչին </h4>
                         </div>
                         <form method="post" action="/edit/deliveryman">
                             <div class="modal-body">
-                                <div ><p id="toChange"></p></div>
-                                <div>
-                                    <span>set new name</span>
-                                    <input id="editArea" type="text" name="new_deliveryman_name" required>
-                                </div>
 
 
-                                <input id="toEditArea" type="hidden" name="toChangeDeliverymanId" />
-                                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                                    <div class="form-group">
+                                        <label>
+                                            <p id="toChange"></p>
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span>Նշել նոր անունը</span>
+                                        <input class="form-control" id="editArea" type="text" name="new_deliveryman_name" required>
+                                    </div>
+
+                                    <input id="toEditArea" type="hidden" name="toChangeDeliverymanId" />
+                                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary saveDeliverymanChange">Save changes</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
+                                <button type="button" class="btn btn-primary saveDeliverymanChange">Պահպանել փոփոխությունը</button>
                             </div>
                         </form>
 

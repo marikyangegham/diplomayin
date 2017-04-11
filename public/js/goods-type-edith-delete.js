@@ -33,7 +33,7 @@ $('#goods-types-table .glyphicon-pencil').click(function () {
     $('#editArea').removeClass('error-input-border');
 });
 
-$('#goods-types-table .saveGoodsChange').click(function(){
+$('.saveGoodsChange').click(function(){
     let id = $('#toEditArea').val();
     let text = $('#editArea').val();
     let price = $('#new_goods_price').val();

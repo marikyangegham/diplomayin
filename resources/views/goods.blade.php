@@ -2,17 +2,18 @@
 
 @section('main-container')
     <div>
-        <div class="col-lg-6">
-            <h3>Goods List</h3>
+        <div>
+            <h3>Ապրանքների ցուցակ</h3>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>name</th>
-                    <th>category_name</th>
-                    <th>price</th>
+                    <th>Ապրանքի անունը</th>
+                    <th>Կատեգորիայի անունը</th>
+                    <th>Չափման միավորը</th>
+                    <th>արժեքը</th>
                     @if(\Auth::user()->isAdmin())
-                        <th>edith_category</th>
-                        <th>remove_category</th>
+                        <th>Փոփոխել</th>
+                        <th>Ջնջել</th>
                     @endif
                 </tr>
                 </thead>
@@ -22,6 +23,7 @@
                         <tr>
                             <td>{{$goodsType['name']}}</td>
                             <td>{{$goodsType->category->category_name}}</td>
+                            <td>{{$goodsType['measurement']}}</td>
                             <td>{{$goodsType['price']}}</td>
 
                             @if(\Auth::user()->isAdmin())
@@ -39,18 +41,24 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">edit  goods </h4>
+                            <h4 class="modal-title" id="myModalLabel">Փոփոխել ապրանքը </h4>
                         </div>
                         <form method="post" action="/edit/goods">
                             <div class="modal-body">
-                                <div ><p id="toChange"></p></div>
-                                <div>
-                                    <span>set new name</span>
-                                    <input id="editArea" type="text" name="new_goods_name" required>
+
+                                <div class="form-group">
+                                    <label>
+                                        <p id="toChange">
+                                        </p>
+                                    </label>
                                 </div>
-                                <div>
-                                    <span>set category</span>
-                                    <select id="selectedCategory" name="selected_category">
+                                <div class="form-group">
+                                    <label>Նշել նոր անունը</label>
+                                    <input class="form-control" id="editArea" type="text" name="new_goods_name" required>
+                                </div>
+                                <div  class="form-group">
+                                    <label>Նշել կատեգորիան</label>
+                                    <select class="form-control" id="selectedCategory" name="selected_category">
                                         <option></option>
                                         @if(count($categories) > 0)
                                             @foreach($categories as $category)
@@ -59,9 +67,9 @@
                                         @endif
                                     </select>
                                 </div>
-                               <div>
-                                   <span>set price</span>
-                                   <input id="new_goods_price" type="text" name="new_goods_price" required>
+                               <div class="form-group">
+                                   <label>Նշել արժեքը</label>
+                                   <input class="form-control" id="new_goods_price" type="text" name="new_goods_price" required>
                                </div>
 
                                 <input id="toEditArea" type="hidden" name="toChangeGoodsId" />
@@ -69,8 +77,8 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary saveGoodsChange">Save changes</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
+                                <button type="button" class="btn btn-primary saveGoodsChange">Պահպանել փոփոխությունը</button>
                             </div>
                         </form>
 

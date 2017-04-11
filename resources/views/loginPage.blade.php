@@ -18,17 +18,17 @@
             <div class="col-lg-4 col-lg-offset-4">
                 <form id="signinForm" class="form-signin" action="/login" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                    <h2 class="form-signin-heading">Please sign in</h2>
-                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <h2 class="form-signin-heading">Մուտք գործեք</h2>
+                    <label for="inputEmail" class="sr-only">Էլեկտրոնային հասցե</label>
                     <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-                    <label for="inputPassword" class="sr-only">Password</label>
+                    <label for="inputPassword" class="sr-only">Գաղտնաբառ</label>
                     <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="remember-me"> Remember me
+                            <input type="checkbox" value="remember-me"> Հիշել ինձ
                         </label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Մուտք գործել</button>
 
                 </form>
             </div>

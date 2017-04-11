@@ -2,15 +2,20 @@
 
 @section('add-new-deliveryman-container')
     @if(\Auth::user()->isAdmin())
-        <div class="col-lg-6">
+        <div>
 
             <div class="col-lg-12">
-                <h3>Add New Deliveryman</h3>
+                <h3>Ավելացնել նոր առաքիչ</h3>
                 <form method="post" action="/add/new/deliveryman">
-                    <span>enter deliveryman name</span>
-                    <input type="text" name="deliveryman_name" required>
-                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                    <input type="submit" value="ADD deliveryman" />
+                    <div class="form-group">
+                        <label>Մուտքագրեք առաքիչի անունը</label>
+                        <input class="form-control" type="text" name="deliveryman_name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                        <input class="btn btn-info" type="submit" value="Ավելացնել" />
+                    </div>
+
                 </form>
             </div>
             @if (count($errors) > 0)
@@ -26,6 +31,6 @@
         </div>
     @endif
     @if(!\Auth::user()->isAdmin())
-        <div><p>Required admin permission</p></div>
+        <div><p>Մուտքը միայն Ադմինների համար</p></div>
     @endif
 @endsection

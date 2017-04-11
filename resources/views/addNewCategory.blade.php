@@ -2,15 +2,18 @@
 
 @section('add-type-container')
     @if(\Auth::user()->isAdmin())
-    <div class="col-lg-6">
+    <div>
 
         <div class="col-lg-12">
-            <h3>Add New Category</h3>
-            <form method="post" action="/add/new/category">
-                <span>enter category name</span>
-                <input type="text" name="category_name" required>
+            <h3>Ավելացնել նոր կատեգորիա</h3>
+            <form   method="post" action="/add/new/category">
+                <div class="form-group">
+                    <label>մուտքագրեք կատեգորիայի անվանումը</label>
+                    <input class="form-control" type="text" name="category_name" required>
+                </div>
                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                <input type="submit" value="ADD Category">
+                <input type="submit" class="btn btn-info" value="Ավելացնել">
+
             </form>
         </div>
         @if (count($errors) > 0)
@@ -26,6 +29,6 @@
     </div>
     @endif
     @if(!\Auth::user()->isAdmin())
-        <div><p>Required admin permission</p></div>
+        <div><p>Մուտքը միայն Ադմինների համար</p></div>
     @endif
 @endsection

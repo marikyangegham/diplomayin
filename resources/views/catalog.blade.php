@@ -1,12 +1,12 @@
 @extends('layout_admin')
 
 @section('input-output-container')
-    <div class="col-lg-6">
+    <div  style="overflow: scroll">
         <h3>Catalog</h3>
         <table class="table">
             <thead>
             <tr>
-                <th>stock_name</th>
+                <th>Օգտվողի անունը</th>
                 @if(count($goodsTypes) > 0)
                     @foreach($goodsTypes as $goodsType)
                         <th>{{$goodsType['name']}}</th>
@@ -28,7 +28,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td>total</td>
+                <td>Ընդհանուր</td>
                 @foreach($total as $itemTotal)
                     <th>{{$itemTotal}}</th>
                 @endforeach

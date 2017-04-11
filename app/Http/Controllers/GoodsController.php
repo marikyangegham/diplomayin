@@ -35,7 +35,7 @@ class GoodsController extends Controller
         User::create($user['attributes']);*/
 
         //return redirect('/admin/users');
-        $goodsTypes = GoodsTypes::select('id', 'name', 'price' , 'category_id')->with('category')->get();
+        $goodsTypes = GoodsTypes::select('id', 'name', 'price' , 'measurement', 'category_id')->with('category')->get();
         $categories = Category::select()->get();
         $name = $user = Auth::user()->name;
         return view('goods', ['name' => $name , 'goodsTypes' => $goodsTypes, 'categories' => $categories]);

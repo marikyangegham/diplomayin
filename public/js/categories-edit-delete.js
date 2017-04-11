@@ -1,4 +1,4 @@
-window.onload = function () {
+
 
     $("#category-table .glyphicon-trash").click(function(){
 
@@ -29,6 +29,7 @@ window.onload = function () {
     });
 
     $('#category-table .glyphicon-pencil').click(function () {
+
         $('#editArea').val('');
         var _this = $(this);
         var id = $(this).attr('data-id');
@@ -67,4 +68,4 @@ window.onload = function () {
     });
 
 
-};
+
