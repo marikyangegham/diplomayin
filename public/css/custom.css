@@ -231,3 +231,7 @@ button {
         background:#399cb9;
     }
 }
+
+.border{
+    border: 1px solid black;
+}

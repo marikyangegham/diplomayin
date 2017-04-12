@@ -17,7 +17,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/add/new/goods','AddNewGoodsController@show');
     Route::get('/catalog','CatalogController@show');
     Route::get('/inputted','InputController@show');
+    Route::get('/return', 'ReturnController@show');
     Route::get('/outputted','OutputController@show');
+    Route::get('/business','BusinessController@show');
     Route::get('/add/new/deliveryman', 'DeliverymanController@show');
     Route::get('/deliveryman', 'DeliverymanController@showList');
     Route::post('/remove/goods/type', 'GoodsController@destroy');
@@ -26,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/edit/goods', 'GoodsController@edit');
     Route::get('/stocks', 'StocksController@show');
     Route::post('/input/goods', 'InputController@input');
+    Route::post('/return/goods', 'ReturnController@returnGoods');
     Route::post('/output/goods', 'OutputController@output');
     Route::post('/change/catalog/data', 'CatalogController@change');
     //Route::get('/logout' , 'Auth\LoginController@logout');

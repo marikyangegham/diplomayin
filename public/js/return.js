@@ -1,16 +1,14 @@
-$('.input').click(function () {
+$('.return').click(function () {
     var _this = $(this);
-    var goods_id = $('#inputGoodType').val();
+    var goods_id = $('#returnGoodType').val();
     var quantity = $('#goodQuantity').val();
-    var delivery_id = $('#goodDeliveryman').val();
-        $(_this).closest('tr').addClass('danger');
+    $(_this).closest('tr').addClass('danger');
 
     $.ajax({
-        url: '/input/goods',
+        url: '/return/goods',
         data : {goods_id: goods_id,
                 quantity: quantity,
-                delivery_id: delivery_id,
-                "_token": $('meta[name="csrf-token"]').attr('content')},
+                 "_token": $('meta[name="csrf-token"]').attr('content')},
         type: "POST",
         dataType: "json",
         success : function(response){
@@ -31,11 +29,11 @@ $('.input').click(function () {
 });
 
 $(document).ready(function(){
-    $("#inputGoodType").on('change', function(){
+    $("#returnGoodType").on('change', function(){
         var measurement = $(this).find(':selected').data('measurement');
 
         if(measurement){
-            $("#input-goods-measurement").text(measurement);
+            $("#return-goods-measurement").text(measurement);
         }
     });
 });

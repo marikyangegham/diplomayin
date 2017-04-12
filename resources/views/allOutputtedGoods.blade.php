@@ -4,7 +4,7 @@
     <?php $totalPrice = 0; ?>
     <div>
         <h3>Դուրս գրված ապրանքներ</h3>
-        <table class="table">
+        <table class="table" id="table-output">
             <thead>
             <tr>
                 <th>Ապրանքի անվանումը</th>
@@ -55,8 +55,8 @@
                     </div>
                     <form method="post" action="/output/goods">
                         <div class="modal-body">
-                            <div class="margintop">
-                                <div class="col-lg-4 form-group">
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
                                     <label>Նշել ապրանքատեսակը</label>
                                     <select class="form-control" id="outputGoodId">
                                         <option></option>
@@ -66,7 +66,7 @@
                                     </select>
                                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                 </div>
-                                <div class="col-lg-4 form-group" >
+                                <div class="col-lg-12 form-group" >
                                     <label>Նշել քանակը</label>
                                     <input class="form-control" id="goodQuantity" type="number" name="goodQuantity">
                                 </div>

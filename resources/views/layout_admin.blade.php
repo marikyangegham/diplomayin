@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Stocks.am</title>
-    <link href="/fonts/glyphicons-halflings-regular.ttf" type='text/css'>
+
+    {{--<link href="/fonts/glyphicons-halflings-regular.ttf" type='text/css'>--}}
+    <link href="/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
     <!-- Fonts -->
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/custom.css" rel="stylesheet" type="text/css">
@@ -55,6 +57,8 @@
                 <li><a href="/deliveryman"><i class="glyphicon glyphicon-tasks"></i> Առաքիչներ</a></li>
                 <li><a href="/inputted"><i class="glyphicon glyphicon-tasks"></i> Մուտք արված ապրանքներ</a></li>
                 <li><a href="/outputted"><i class="glyphicon glyphicon-tasks"></i> Դուրս գրված ապրանքներ</a></li>
+                <li><a href="/return"><i class="glyphicon glyphicon-tasks"></i> Վերադարձված ապրանքներ</a></li>
+                <li><a href="/business"><i class="glyphicon glyphicon-tasks"></i> Գործարքներ</a></li>
             </ul>
             <div id="background"><!-- Main background -->
 
@@ -100,6 +104,7 @@
         </div>
         <div class="col-lg-8">
             @yield('main-container')
+            @yield('returned-goods')
             @yield('all-inputted-container')
             @yield('all-outputted-container')
             @yield('add-new-deliveryman-container')
@@ -109,6 +114,7 @@
             @yield('add-new-goods-container')
             @yield('add-type-container')
             @yield('input-output-container')
+            @yield('business-container')
         </div>
     </div>
 </div>
@@ -126,7 +132,10 @@
 <script src="/js/catalog-changes.js"></script>
 <script src="/js/deliverymanEditDelete.js"></script>
 <script src="/js/input.js"></script>
+<script src="/js/return.js"></script>
 <script src="/js/output.js"></script>
 <script src="/js/calculator.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>

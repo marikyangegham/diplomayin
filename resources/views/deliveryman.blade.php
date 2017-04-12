@@ -4,7 +4,7 @@
     <div>
         <div>
             <h3>Առաքիչների ցուցակ</h3>
-            <table class="table">
+            <table class="table" id="table-deliveryman">
                 <thead>
                 <tr>
                     <th>Առաքիչ</th>

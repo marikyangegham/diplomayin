@@ -4,7 +4,7 @@
     <div>
         <div>
             <h3>Ապրանքների ցուցակ</h3>
-            <table class="table">
+            <table class="table" id="table-goods">
                 <thead>
                 <tr>
                     <th>Ապրանքի անունը</th>

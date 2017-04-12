@@ -3,7 +3,7 @@
 @section('goods-container')
     <div>
         <h3>Կատեգորիաների ցուցակ</h3>
-        <table class="table">
+        <table class="table" id="table-categories">
             <thead>
                 <tr>
                     <th>Կատեգորիայի անուն</th>

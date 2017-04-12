@@ -1,31 +1,50 @@
 @extends('layout_admin')
 
 @section('all-inputted-container')
+    <?php
+    $totalPrice = 0;
+    ?>
     <div>
         <h3>Ներմուծված ապրանքները</h3>
-        <table class="table">
+        <table class="table" id="table-input">
             <thead>
             <tr>
                 <th>Ապրանքի անվանումը</th>
                 <th>Ընդունողի անունը</th>
                 <th>Քանակը</th>
+                <th>Արժեքը</th>
                 <th>Առաքիչը</th>
                 <th>Ժամանակը</th>
             </tr>
             </thead>
             <tbody id="category-table">
-            @if(count($inputtedGoods) > 0)
+            @if(!empty($inputtedGoods))
                 @foreach($inputtedGoods as $inputtedGood)
+                    <?php
+                    $price = $inputtedGood->good->price * $inputtedGood->quantity;
+                    $totalPrice += $price;
+                    ?>
                     <tr>
                         <td>{{$inputtedGood->good->name}}</td>
                         <td>{{$inputtedGood->user->name}}</td>
                         <td>{{$inputtedGood->quantity}}({{$inputtedGood->good->measurement}})</td>
+                        <td>{{$inputtedGood->good->price}}</td>
                         <td>{{$inputtedGood->deliveryman->deliveryman_name}}</td>
                         <td>{{$inputtedGood->created_at}}</td>
                     </tr>
                 @endforeach
             @endif
             </tbody>
+            <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{$totalPrice }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </tfoot>
         </table>
         <button class="btn btn-info" id="inputButton" data-toggle="modal" data-target="#myModal">Ներմուծել</button>
         <!-- Modal -->
@@ -38,22 +57,22 @@
                     </div>
                     <form method="post" action="/input/goods">
                         <div class="modal-body">
-                            <div class="margintop">
-                                <div class="col-lg-4 form-group">
+                            <div class="row">
+                                <div class="col-lg-12 form-group">
                                     <label>Նշել ապրանքատեսակը</label>
                                     <select id="inputGoodType" class="form-control">
                                         <option></option>
                                         @foreach ($goods as $good)
-                                            <option value="{{$good['id']}}">{{$good['name']}}</option>
+                                            <option data-measurement="{{$good['measurement']}}" value="{{$good['id']}}">{{$good['name']}}</option>
                                         @endforeach
                                     </select>
                                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                 </div>
-                                <div class="col-lg-4 form-group">
-                                    <label>Նշել քանակը({{ $good['measurement'] }})</label>
+                                <div class="col-lg-12 form-group">
+                                    <label>Նշել քանակը(<span id="input-goods-measurement"></span>)</label>
                                     <input class="form-control" id="goodQuantity" type="number" name="goodQuantity">
                                 </div>
-                                <div class="col-lg-4 form-group">
+                                <div class="col-lg-12 form-group">
                                     <label>Ընտրել առաքիչին</label>
                                     <select class="form-control" id="goodDeliveryman">
                                         <option></option>

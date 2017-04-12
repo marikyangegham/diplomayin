@@ -1,9 +1,9 @@
 @extends('layout_admin')
 
 @section('input-output-container')
-    <div  style="overflow: scroll">
+    <div>
         <h3>Catalog</h3>
-        <table class="table">
+        <table class="table" id="table-catalog">
             <thead>
             <tr>
                 <th>Օգտվողի անունը</th>

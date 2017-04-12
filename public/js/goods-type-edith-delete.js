@@ -57,3 +57,5 @@ $('.saveGoodsChange').click(function(){
 
     });
 });
+
+
