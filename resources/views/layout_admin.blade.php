@@ -37,6 +37,7 @@
                 <li><a href="/stocks">Օգտվողներ</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><div class="requests"><a id="requestCount" href="/request">0</a></div></li>
                 <li><a href="/stocks">{{\Auth::user()->name}}</a></li>
                 <li><a href="{{ URL::route('account-sign-out') }}">Դուրս գալ</a></li>
             </ul>
@@ -110,6 +111,7 @@
             @yield('add-new-deliveryman-container')
             @yield('stocks-container')
             @yield('goods-container')
+            @yield('request-container')
             @yield('deliveryman-container')
             @yield('add-new-goods-container')
             @yield('add-type-container')
@@ -137,5 +139,6 @@
 <script src="/js/calculator.js"></script>
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/app.js"></script>
+<script src="/js/request.js"></script>
 </body>
 </html>

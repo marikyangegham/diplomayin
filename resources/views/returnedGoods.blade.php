@@ -9,6 +9,7 @@
             <table class="table" id="table-returned">
                 <thead>
                 <tr>
+                    <th>Կոդ</th>
                     <th>Ապրանքի անվանումը</th>
                     <th>Վերադարձնողի անունը</th>
                     <th>Քանակը</th>
@@ -24,6 +25,7 @@
                         $totalPrice += $price;
                         ?>
                         <tr>
+                            <td>{{$returnedGood->good->id}}</td>
                             <td>{{$returnedGood->good->name}}</td>
                             <td>{{$returnedGood->user->name}}</td>
                             <td>{{$returnedGood->quantity}}({{$returnedGood->good->measurement}})</td>

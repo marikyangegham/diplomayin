@@ -11,6 +11,7 @@
             <table class="table" id="table-returned">
                 <thead>
                 <tr>
+                    <th>Կոդ</th>
                     <th>Ապրանքի անվանումը</th>
                     <th>Քանակը</th>
                     <th>Արժեքը</th>
@@ -24,6 +25,7 @@
                         $totalPriceReturn += $price;
                         ?>
                         <tr>
+                            <td>{{$returnedGood->good->id}}</td>
                             <td>{{$returnedGood->good->name}}</td>
                             <td>{{$returnedGood->quantity}}({{$returnedGood->good->measurement}})</td>
                             <td>{{$returnedGood->good->price * $returnedGood->quantity}}</td>
@@ -55,6 +57,7 @@
             <table class="table" id="table-input">
                 <thead>
                 <tr>
+                    <th>Կոդ</th>
                     <th>Ապրանքի անվանումը</th>
                     <th>Քանակը</th>
                     <th>Արժեքը</th>
@@ -68,6 +71,7 @@
                         $totalPriceInput += $price;
                         ?>
                         <tr>
+                            <td>{{$inputtedGood->good->id}}</td>
                             <td>{{$inputtedGood->good->name}}</td>
                             <td>{{$inputtedGood->quantity}}({{$inputtedGood->good->measurement}})</td>
                             <td>{{$inputtedGood->good->price * $inputtedGood->quantity}}</td>
@@ -89,6 +93,7 @@
             <table class="table" id="table-output">
                 <thead>
                 <tr>
+                    <th>Կոդ</th>
                     <th>Ապրանքի անվանումը</th>
                     <th>Քանակ</th>
                     <th>Արժեքը</th>
@@ -103,6 +108,7 @@
                         ?>
                         <tr>
                             <td>{{$outputtedGood->good->name}}</td>
+                            <td>{{$outputtedGood->good->id}}</td>
                             <td>{{$outputtedGood->quantity}} ({{$outputtedGood->good->measurement}}) </td>
                             <td>{{($outputtedGood->good->price + $outputtedGood->good->price * 10/100) * $outputtedGood->quantity }}</td>
                         </tr>

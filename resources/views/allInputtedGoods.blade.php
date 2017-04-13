@@ -9,6 +9,7 @@
         <table class="table" id="table-input">
             <thead>
             <tr>
+                <th>Կոդ </th>
                 <th>Ապրանքի անվանումը</th>
                 <th>Ընդունողի անունը</th>
                 <th>Քանակը</th>
@@ -25,6 +26,7 @@
                     $totalPrice += $price;
                     ?>
                     <tr>
+                        <td>{{$inputtedGood->good->id}}</td>
                         <td>{{$inputtedGood->good->name}}</td>
                         <td>{{$inputtedGood->user->name}}</td>
                         <td>{{$inputtedGood->quantity}}({{$inputtedGood->good->measurement}})</td>

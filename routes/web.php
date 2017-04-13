@@ -12,21 +12,27 @@
 */
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/goods','GoodsController@index');
+    Route::get('/stocks', 'StocksController@show');
     Route::get('/add/new/category', 'AddNewCategoryController@show');
     Route::get('/categories','CategoryController@show');
     Route::get('/add/new/goods','AddNewGoodsController@show');
     Route::get('/catalog','CatalogController@show');
     Route::get('/inputted','InputController@show');
     Route::get('/return', 'ReturnController@show');
+    Route::get('/request', 'RequestController@show');
     Route::get('/outputted','OutputController@show');
     Route::get('/business','BusinessController@show');
     Route::get('/add/new/deliveryman', 'DeliverymanController@show');
     Route::get('/deliveryman', 'DeliverymanController@showList');
+
+
+
     Route::post('/remove/goods/type', 'GoodsController@destroy');
     Route::post('/remove/deliveryman', 'DeliverymanController@destroy');
     Route::post('/edit/deliveryman', 'DeliverymanController@edit');
     Route::post('/edit/goods', 'GoodsController@edit');
-    Route::get('/stocks', 'StocksController@show');
+    Route::post('/request/new/goods', 'RequestController@request');
+    Route::post('/request/all', 'RequestController@allRequests');
     Route::post('/input/goods', 'InputController@input');
     Route::post('/return/goods', 'ReturnController@returnGoods');
     Route::post('/output/goods', 'OutputController@output');

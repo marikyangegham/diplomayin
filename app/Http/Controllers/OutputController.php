@@ -8,6 +8,8 @@ use App\GoodsTypes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Catalog;
+use App\Request as RequestModel;
+use Carbon\Carbon;
 
 class OutputController extends Controller
 {
@@ -42,6 +44,17 @@ class OutputController extends Controller
 
         if($catalogItem && $catalogItem -> quantity >= $quantity){
             $catalogItem->quantity -= $quantity;
+            if($catalogItem->quantity < 10 && $user_id !=1){
+                $dt = Carbon::now()->addDay();
+
+                $r = new RequestModel();
+                $r->from_user_id = 1;
+                $r->to_user_id = $user_id;
+                $r->goods_id = $goodsId;
+                $r->time = $dt->addDays(6);
+                $r->quantity = 10;
+                $r->save();
+            }
             $catalogItem->save();
         }else{
             return response()->json([

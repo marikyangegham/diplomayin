@@ -7,6 +7,7 @@
         <table class="table" id="table-output">
             <thead>
             <tr>
+                <th>Կոդ </th>
                 <th>Ապրանքի անվանումը</th>
                 <th>Դուրս գրողի անունը</th>
                 <th>Քանակ</th>
@@ -23,6 +24,7 @@
                         $totalPrice += $price;
                     ?>
                     <tr>
+                        <td>{{$outputtedGood->good->id}}</td>
                         <td>{{$outputtedGood->good->name}}</td>
                         <td>{{$outputtedGood->user->name}}</td>
                         <td>{{$outputtedGood->quantity}} ({{$outputtedGood->good->measurement}}) </td>
@@ -53,32 +55,40 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Դուրս գրել ապրանք</h4>
                     </div>
-                    <form method="post" action="/output/goods">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12 form-group">
-                                    <label>Նշել ապրանքատեսակը</label>
-                                    <select class="form-control" id="outputGoodId">
-                                        <option></option>
-                                        @foreach ($goods as $good)
-                                            <option value="{{$good['id']}}">{{$good['name']}}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                    <div id="form">
+                        <form method="post" action="/output/goods">
+                            <div class="modal-body" >
+                                <div class="row">
+                                    <div class="col-lg-12 form-group">
+                                        <label>Նշել ապրանքատեսակը</label>
+                                        <select class="form-control" id="outputGoodId">
+                                            <option></option>
+                                            @foreach ($goods as $good)
+                                                <option value="{{$good['id']}}">{{$good['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                        <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                                    </div>
+                                    <div class="col-lg-12 form-group" >
+                                        <label>Նշել քանակը</label>
+                                        <input class="form-control" id="goodQuantity" type="number" name="goodQuantity">
+                                    </div>
+
+                                    <div class="col-lg-12 form-group if-failed">
+                                        <h3>Պահեստում չկա բավականաչափ ապրանք</h3>
+                                    </div>
                                 </div>
-                                <div class="col-lg-12 form-group" >
-                                    <label>Նշել քանակը</label>
-                                    <input class="form-control" id="goodQuantity" type="number" name="goodQuantity">
-                                </div>
+
                             </div>
 
-                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>
-                            <button type="button" class="btn btn-primary output">Դուրս գրել</button>
-                        </div>
-                    </form>
+                                <button type="button" class="btn btn-primary request">Պատվիրել ցանցի այլ պահեստից</button>
+                                <button type="button" class="btn btn-primary  output">Դուրս գրել</button>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
             </div>

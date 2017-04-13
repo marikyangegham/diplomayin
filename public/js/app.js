@@ -6,4 +6,5 @@ $(document).ready(function(){
     $('#table-input').DataTable();
     $('#table-output').DataTable();
     $('#table-returned').DataTable();
+    $('#request-table').DataTable();
 });

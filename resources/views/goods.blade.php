@@ -7,6 +7,7 @@
             <table class="table" id="table-goods">
                 <thead>
                 <tr>
+                    <th>Կոդ</th>
                     <th>Ապրանքի անունը</th>
                     <th>Կատեգորիայի անունը</th>
                     <th>Չափման միավորը</th>
@@ -21,6 +22,7 @@
                 @if(count($goodsTypes) > 0)
                     @foreach($goodsTypes as $goodsType)
                         <tr>
+                            <td>{{$goodsType['id']}}</td>
                             <td>{{$goodsType['name']}}</td>
                             <td>{{$goodsType->category->category_name}}</td>
                             <td>{{$goodsType['measurement']}}</td>
