@@ -251,3 +251,10 @@ button {
 .if-failed{
     color: red;
 }
+.glyphicon-refresh{
+    cursor: pointer;
+}
+.err-stock{
+    color: red;
+    display: none;
+}

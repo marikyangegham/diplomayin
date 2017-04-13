@@ -17,4 +17,7 @@ class Request extends Model
     {
         return $this->belongsTo('App\User', 'to_user_id', 'id');
     }
+    public function good(){
+        return $this->belongsTo('App\GoodsTypes', 'goods_id', 'id');
+    }
 }

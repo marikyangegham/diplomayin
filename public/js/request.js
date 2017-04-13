@@ -10,7 +10,7 @@ $(document).ready(function () {
            success : function(response){
 
                if(response.status == "success"){
-                   console.log(response);
+                   //console.log(response);
                    $('#requestCount').html(response.count);
                }else if(response.status == "fail"){
                    // $('#form form').css('height', '1px');
@@ -23,7 +23,7 @@ $(document).ready(function () {
            },
            error : function(response){
                //$(_this).closest('tr').removeClass('danger');
-               console.log(response);
+               //console.log(response);
                //alert("try again");
            },
            complete: function(){

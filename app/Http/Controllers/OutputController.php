@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Catalog;
 use App\Request as RequestModel;
+use App\MainRequest;
 use Carbon\Carbon;
 
 class OutputController extends Controller
@@ -54,6 +55,11 @@ class OutputController extends Controller
                 $r->time = $dt->addDays(6);
                 $r->quantity = 10;
                 $r->save();
+            }elseif($user_id == 1 && $catalogItem->quantity < 30){
+                $mr = new MainRequest();
+                $mr->goods_id = $goodsId;
+                $mr->quantity = $quantity;
+                $mr->save();
             }
             $catalogItem->save();
         }else{

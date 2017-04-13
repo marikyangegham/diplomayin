@@ -4,92 +4,95 @@
     <div>
         <div class="col-lg-12">
             <div class="col-lg-12">
-                <h3>Հարցումների ցուցակ այլ պահեստ</h3>
-                <table class="table" id="request-table">
+                <h3>Հարցումների ցուցակը այլ պահեստներին</h3>
+                <table class="table" id="request-to-me-table">
                     <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Ապրանքի անունը</th>
-                        <th>Կատեգորիայի անունը</th>
-                        <th>Չափման միավորը</th>
-                        <th>արժեքը</th>
+                        <th>Արժեքը</th>
+                        <th>Քանակը</th>
                         <th>Պահեստի անունը</th>
                         <th>Առաքման ժամկետը</th>
-                        @if(\Auth::user()->isAdmin())
-                            <th>Փոփոխել</th>
-                            <th>Ջնջել</th>
-                        @endif
+
                     </tr>
                     </thead>
                     <tbody id="">
-                    @if(isset($requests) && count($requests) > 0)
-                        @foreach($goodsTypes as $goodsType)
+                    @if(isset($requestsToMe) && count($requestsToMe) > 0)
+                        @foreach($requestsToMe as $requestToMe)
                             <tr>
-                                <td>{{$goodsType['id']}}</td>
-                                <td>{{$goodsType['name']}}</td>
-                                <td>{{$goodsType->category->category_name}}</td>
-                                <td>{{$goodsType['measurement']}}</td>
-                                <td>{{$goodsType['price']}}</td>
-
-                                @if(\Auth::user()->isAdmin())
-                                    <td><span class="glyphicon glyphicon-pencil" data-value="edit" aria-hidden="true" data-id="{{$goodsType['id']}}" data-toggle="modal" data-target="#myModal"></span></td>
-                                    <td><span class="glyphicon glyphicon-trash" data-value="delete" aria-hidden="true" data-id="{{$goodsType['id']}}"></span></td>
-                                @endif
+                                <td>{{ $requestToMe->good->id }}</td>
+                                <td>{{ $requestToMe->good->name }}</td>
+                                <td>{{ $requestToMe->good->price }}</td>
+                                <td>{{ $requestToMe->quantity }} ({{ $requestToMe->good->measurement }})</td>
+                                <td>{{ $requestToMe->fromUser->name }}</td>
+                                <td>{{ $requestToMe->time }}</td>
                             </tr>
                         @endforeach
                     @endif
                     </tbody>
                 </table>
             </div>
-            <!-- Modal -->
-            {{--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--}}
-                {{--<div class="modal-dialog" role="document">--}}
-                    {{--<div class="modal-content">--}}
-                        {{--<div class="modal-header">--}}
-                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
-                            {{--<h4 class="modal-title" id="myModalLabel">Փոփոխել ապրանքը </h4>--}}
-                        {{--</div>--}}
-                        {{--<form method="post" action="/edit/goods">--}}
-                            {{--<div class="modal-body">--}}
 
-                                {{--<div class="form-group">--}}
-                                    {{--<label>--}}
-                                        {{--<p id="toChange">--}}
-                                        {{--</p>--}}
-                                    {{--</label>--}}
-                                {{--</div>--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<label>Նշել նոր անունը</label>--}}
-                                    {{--<input class="form-control" id="editArea" type="text" name="new_goods_name" required>--}}
-                                {{--</div>--}}
-                                {{--<div  class="form-group">--}}
-                                    {{--<label>Նշել կատեգորիան</label>--}}
-                                    {{--<select class="form-control" id="selectedCategory" name="selected_category">--}}
-                                        {{--<option></option>--}}
-                                        {{--@if(count($categories) > 0)--}}
-                                            {{--@foreach($categories as $category)--}}
-                                                {{--<option value="{{$category['id']}}" data-id="{{$category['id']}}">{{$category['category_name']}}</option>--}}
-                                            {{--@endforeach--}}
-                                        {{--@endif--}}
-                                    {{--</select>--}}
-                                {{--</div>--}}
-                                {{--<div class="form-group">--}}
-                                    {{--<label>Նշել արժեքը</label>--}}
-                                    {{--<input class="form-control" id="new_goods_price" type="text" name="new_goods_price" required>--}}
-                                {{--</div>--}}
-
-                                {{--<input id="toEditArea" type="hidden" name="toChangeGoodsId" />--}}
-                                {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
-
-                            {{--</div>--}}
-                            {{--<div class="modal-footer">--}}
-                                {{--<button type="button" class="btn btn-default" data-dismiss="modal">Փակել</button>--}}
-                                {{--<button type="button" class="btn btn-primary saveGoodsChange">Պահպանել փոփոխությունը</button>--}}
-                            {{--</div>--}}
-                        {{--</form>--}}
-
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            <div class="col-lg-12">
+                <h3>Հարցումների ցուցակը այլ պահեստներից</h3>
+                <table class="table" id="request-from-me-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ապրանքի անունը</th>
+                        <th>Արժեքը</th>
+                        <th>Քանակը</th>
+                        <th>Պահեստի անունը</th>
+                        <th>Առաքման ժամկետը</th>
+                        <th>Դուրս գրել</th>
+                    </tr>
+                    </thead>
+                    <tbody id="">
+                    @if(isset($requestsFromMe) && count($requestsFromMe) > 0)
+                        @foreach($requestsFromMe as $requestFromMe)
+                            <tr>
+                                <td>{{ $requestFromMe->good->id }}</td>
+                                <td>{{ $requestFromMe->good->name }}</td>
+                                <td>{{ $requestFromMe->good->price }}</td>
+                                <td>{{ $requestFromMe->quantity }} ({{ $requestFromMe->good->measurement }})</td>
+                                <td>{{ $requestFromMe->toUser->name }}</td>
+                                <td>{{ $requestFromMe->time }}</td>
+                                <td><span class="glyphicon glyphicon-refresh" aria-hidden="true" data-value="{{$requestFromMe->quantity}}" data-id="{{ $requestFromMe->good->id }}"></span></td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                </table>
+                <h2 class="err-stock">Պահեստում առկա չէ ապրանքը</h2>
+            </div>
+            @if(\Auth::user()->isAdmin())
+                <div class="col-lg-12">
+                    <h3>Պահանջվող ապրանքներ</h3>
+                    <table class="table" id="request-main-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ապրանքի անունը</th>
+                            <th>Արժեքը</th>
+                            <th>Քանակը</th>
+                        </tr>
+                        </thead>
+                        <tbody id="">
+                        @if(isset($mainRequests) && count($mainRequests) > 0)
+                            @foreach($mainRequests as $mainRequest)
+                                <tr>
+                                    <td>{{ $mainRequest->good->id }}</td>
+                                    <td>{{ $mainRequest->good->name }}</td>
+                                    <td>{{ $mainRequest->good->price }}</td>
+                                    <td>{{ $mainRequest->quantity }} ({{ $mainRequest->good->measurement }})</td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+            @endif
             @if (count($errors) > 0)
                 <div class="alert alert-danger col-lg-12 alert-custom-class">
                     <ul>

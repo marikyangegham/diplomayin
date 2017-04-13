@@ -71,5 +71,43 @@ $('button.request').click(function () {
     });
 });
 
+$('.glyphicon-refresh').click(function () {
+    var _this = $(this);
+    var goods_id = $('.glyphicon-refresh').data('id');
+    var quantity = $('.glyphicon-refresh').data('value');
+    $(_this).closest('tr').addClass('danger');
+
+    $.ajax({
+        url: '/output/goods',
+        data : {
+            goods_id: goods_id,
+            quantity: quantity,
+            "_token": $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "POST",
+        dataType: "json",
+        success : function(response){
+            console.log(response);
+            if(response.status == "success"){
+                location.reload();
+            }else if(response.status == "fail"){
+                $('.err-stock').show();
+                window.setTimeout(hide, 5000);
+            }
+        },
+        error : function(response){
+            $(_this).closest('tr').removeClass('danger');
+            console.log(response);
+            //alert("try again");
+        }
+
+    });
+
+});
+
+function hide (){
+    $('.err-stock').hide();
+}
+
 
 

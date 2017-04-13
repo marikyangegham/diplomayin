@@ -9,19 +9,27 @@ use App\Request as RequestModel;
 use Illuminate\Support\Facades\Auth;
 use App\GoodsTypes;
 use App\Catalog;
+use App\MainRequest;
 
 class RequestController extends Controller
 {
     public function show()
     {
-//        $inputtedGoods = Input::with('user')
-//            ->with('good')
-//            ->with('deliveryman')
-//            ->select()
-//            ->get();
-//        $goods = GoodsTypes::get()->all();
-//        $deliverymans = Deliveryman::get()->all();
-        return view('request');
+        $requestsFromMe = RequestModel::with('good')
+            ->with('toUser')
+            ->where('from_user_id', Auth::id())
+            ->where('viewed',0)
+            ->get();
+
+        $requestsToMe = RequestModel::with('good')
+            ->with('fromUser')
+            ->where('to_user_id', Auth::id())
+            ->where('viewed',0)
+            ->get();
+
+        $mainRequests = MainRequest::with('good')->get();
+
+        return view('request', compact('requestsToMe', 'requestsFromMe', 'mainRequests'));
     }
     public function request(Request $request){
         $goods_id = $request->goods_id;
@@ -51,6 +59,11 @@ class RequestController extends Controller
                 ->where('quantity', '>=', $quantity )
                 ->first();
 
+            $mr = new MainRequest();
+            $mr->goods_id = $goods_id;
+            $mr->quantity = $quantity;
+            $mr->save();
+
             if($goodsInOtherStock){
                 $r = new RequestModel();
                 $r->from_user_id = $goodsInOtherStock->user_id;
@@ -70,7 +83,6 @@ class RequestController extends Controller
                 $r->time = $dt->addDays(6);
                 $r->quantity = $quantity;
                 $r->save();
-
                 return response()->json([
                     'status' => 'success'
                 ]);
@@ -85,6 +97,7 @@ class RequestController extends Controller
 
     public function allRequests(){
         try{
+
             $count = RequestModel::where('from_user_id', Auth::id())->where('viewed',0)->get()->count();
             $status = 'success';
 
