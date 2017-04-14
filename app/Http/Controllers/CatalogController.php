@@ -18,26 +18,25 @@ class CatalogController extends Controller
         $goodsTypes = GoodsTypes::with('category')->get();
 
         $total = [];
-        foreach ($users as $user) {
-            $c = [];
 
-            foreach ($goodsTypes as $goodsType) {
-                $c[$goodsType->id] = 0;
-                if(empty($total[$goodsType->id]))
+        foreach ($goodsTypes as $goodsType) {
+            $c = [];
+            foreach ($users as $user) {
+                $c[$user->id] = 0;
+                if(empty($total[$user->id]))
                     $total[$goodsType->id] = 0;
 
                 foreach ($user->catalogs as $catalog) {
                     if ($goodsType->id == $catalog->goods_id) {
-                        $c[$catalog->goods_id] = $catalog->quantity;
+                        $c[$user->id] = $catalog->quantity;
                         $total[$goodsType->id] += $catalog->quantity;
                     }
                 }
             }
 
-            $user->c = $c;
+            $goodsType->c = $c;
         }
         $goods = GoodsTypes::select('id', 'name' , 'category_id')->with('category')->get();
-
 
         return view('catalog', ['goodsTypes' => $goodsTypes, 'users' => $users, 'goods' => $goods, 'total' => $total]);
     }
@@ -87,12 +86,6 @@ class CatalogController extends Controller
             'status' => $status,
             'catalogItem' => $catalogItem
         ]);
-
-        //        $catalog = new Catalog();
-        //        $catalog->goods_id = "9";
-        //        $catalog->user_id = "2";
-        //        $catalog->quantity = 6;
-        //        Catalog::create($catalog['attributes']);
     }
 
 }

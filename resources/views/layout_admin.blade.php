@@ -33,8 +33,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav custom-navbar-nav">
-                <li><a href="/goods">Գլխաոր էջ</a></li>
-                <li><a href="/stocks">Օգտվողներ</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><div class="requests"><a id="requestCount" href="/request">0</a></div></li>
@@ -49,17 +48,37 @@
         <div class="sidebar content-box col-lg-4" style="display: block;">
             <ul class="nav">
                 <!-- Main menu -->
-                <li><a href="/goods"><i class="glyphicon glyphicon-stats"></i> Ապրանքներ</a></li>
-                <li><a href="/categories"><i class="glyphicon glyphicon-list"></i> Կատեգորիաներ</a></li>
-                <li><a href="/add/new/goods"><i class="glyphicon glyphicon-pencil"></i> Ավելացնել նոր ապրանք</a></li>
-                <li><a href="/add/new/category"><i class="glyphicon glyphicon-pencil"></i> Ավելացնել նոր կատեգորիա</a></li>
-                <li><a href="/add/new/deliveryman"><i class="glyphicon glyphicon-pencil"></i> Ավելացնել նոր առաքիչ</a></li>
-                <li><a href="/catalog"><i class="glyphicon glyphicon-tasks"></i> Ապրանքացուցակ</a></li>
-                <li><a href="/deliveryman"><i class="glyphicon glyphicon-tasks"></i> Առաքիչներ</a></li>
-                <li><a href="/inputted"><i class="glyphicon glyphicon-tasks"></i> Մուտք արված ապրանքներ</a></li>
-                <li><a href="/outputted"><i class="glyphicon glyphicon-tasks"></i> Դուրս գրված ապրանքներ</a></li>
-                <li><a href="/return"><i class="glyphicon glyphicon-tasks"></i> Վերադարձված ապրանքներ</a></li>
-                <li><a href="/business"><i class="glyphicon glyphicon-tasks"></i> Գործարքներ</a></li>
+
+                <li><a href="/stocks"><i class="glyphicon glyphicon-user"></i> Օգտվողներ</a></li>
+
+                <li>
+                    <a href="/goods"><i class="glyphicon glyphicon-signal"></i> Ապրանքներ</a>
+                    <a  href="/add/new/goods"><i class="glyphicon glyphicon-plus"></i></a>
+                </li>
+                <li>
+                    <a href="/categories"><i class="glyphicon glyphicon-list"></i> Կատեգորիաներ</a>
+                    <a href="/add/new/category"><i class="glyphicon glyphicon-plus"></i></a>
+                </li>
+                <li><a href="/catalog"><i class="glyphicon glyphicon-list-alt"></i> Ապրանքացուցակ</a></li>
+                <li>
+                    <a href="/deliveryman"><i class="glyphicon glyphicon-shopping-cart"></i> Առաքիչներ</a>
+                    <a href="/add/new/deliveryman"><i class="glyphicon glyphicon-plus"></i></a>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="glyphicon glyphicon-random"></i>
+                        Ապրանքաշրջանառություն
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/inputted"><i class="glyphicon glyphicon-circle-arrow-down"></i> Մուտք</a></li>
+                        <li><a href="/outputted"><i class="glyphicon glyphicon-circle-arrow-up"></i> Ելք</a></li>
+                        <li><a href="/return"><i class="glyphicon glyphicon-alert"></i> Վերադարձված</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/business"><i class="glyphicon glyphicon-euro"></i> Գործարքներ</a></li>
             </ul>
             <div id="background"><!-- Main background -->
 

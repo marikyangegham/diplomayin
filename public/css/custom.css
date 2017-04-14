@@ -11,6 +11,7 @@
     padding-right: 15px;
     margin-left: 40px;
     margin-right: 40px;
+    background-size: 50px;
 }
 .custom-navbar-nav li{
     padding-left: 15px;
@@ -257,4 +258,8 @@ button {
 .err-stock{
     color: red;
     display: none;
+}
+
+.nav>li> a{
+   display: inline-block !important;
 }

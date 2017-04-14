@@ -1,7 +1,10 @@
 $(document).ready(function(){
     $('#table-goods').DataTable();
     $('#table-categories').DataTable();
-    $('#table-catalog').DataTable();
+
+    $('#table-catalog').DataTable( {
+        "pageLength": 50
+    });
     $('#table-deliveryman').DataTable();
     $('#table-input').DataTable();
     $('#table-output').DataTable();

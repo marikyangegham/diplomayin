@@ -2,38 +2,33 @@
 
 @section('input-output-container')
     <div>
-        <h3>Catalog</h3>
+        <h3>Ապրանքացուցակ</h3>
         <table class="table" id="table-catalog">
             <thead>
             <tr>
-                <th>Օգտվողի անունը</th>
-                @if(count($goodsTypes) > 0)
-                    @foreach($goodsTypes as $goodsType)
-                        <th>{{$goodsType['name']}}</th>
+                <th>Ապրանք\Քանակ</th>
+                @if(count($users) > 0)
+                    @foreach($users as $user)
+                        <th>{{$user['name']}}</th>
                     @endforeach
                 @endif
+                <th>Ընդհանուր</th>
             </tr>
             </thead>
             <tbody id="catalog-table">
-            @if(count($users) > 0)
-                @foreach($users as $user)
+            @if(count($goodsTypes) > 0)
+                @foreach($goodsTypes as $goodsType)
                     <tr>
-                        <td>{{$user->name }}</td>
-                        @foreach($user->c as $catalog)
+                        <td>{{$goodsType->name }}</td>
+                        @foreach($goodsType->c as $catalog)
                             <td>{{$catalog }}</td>
                         @endforeach
+
+                        <td>{{$total[$goodsType->id] }}</td>
                     </tr>
                 @endforeach
             @endif
             </tbody>
-            <tfoot>
-            <tr>
-                <td>Ընդհանուր</td>
-                @foreach($total as $itemTotal)
-                    <th>{{$itemTotal}}</th>
-                @endforeach
-            </tr>
-            </tfoot>
         </table>
         {{--<button id="change-quantity" data-toggle="modal" data-target="#myModal">Change Quantity</button>--}}
         <!-- Modal -->
